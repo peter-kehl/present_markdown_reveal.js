@@ -30,8 +30,8 @@ The rest of this file assumes that you are viewing its content through `index.ht
 presentation's webroot, either on GitHub pages or served by a local (or other) web server.
 
 If you are reading the rest of the file from its source (locally, or from
-https://github.com/peter-kehl/no_std_rust_lib_presentation/blob/main/README_NAVIGATION.md), beware
-the links below that start with `blob/main/`. Such links refer to 
+<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md>), beware
+the links below that start with `blob/main/`. Such links refer to TODO
 
 ---
 
@@ -62,7 +62,7 @@ the links below that start with `blob/main/`. Such links refer to
        up/down/right/left, unfortunately.</li>
    <li>Prefer Firefox (showing code blocks better than Chrome).</li>
    <li>Bottom left button shows a list of slides & themes.</li>
-   <li>Alternatively, see the text content as a set of limited continuous <code>README*.md</code> documents. First see <a href="https://github.com/peter-kehl/no_std_rust_lib_presentation/blob/main/README_NAVIGATION.md">README_NAVIGATION.md</a><span class="hide_on_github_pages"> (or locally README_NAVIGATION.md TODO)</span>. Only then go to <a href="README.md" class="presentation_github_repo">README.md</a> (and any successive <code>README*.md</code> files).</li>
+   <li>Alternatively, see the text content as a set of limited continuous <code>README*.md</code> documents. First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">online</a><span class="hide_on_github_pages"> (or <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">local</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_relative_link">README.md</a> (and any successive <code>README*.md</code> files).</li>
 </ol>
 <h1 class="with_keyboard">Extra tips</h1>
 <ol class="with_keyboard">
