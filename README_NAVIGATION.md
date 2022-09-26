@@ -62,7 +62,7 @@ the links below that start with `blob/main/`. Such links refer to TODO
        up/down/right/left, unfortunately.</li>
    <li>Prefer Firefox (showing code blocks better than Chrome).</li>
    <li>Bottom left button shows a list of slides & themes.</li>
-   <li>Alternatively, see the text content as a set of limited continuous <code>README*.md</code> documents. First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">online</a><span class="hide_on_github_pages"> (or <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">local</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_relative_link">README.md</a> (and any successive <code>README*.md</code> files).</li>
+   <li>Alternatively, see the text content as a set of limited continuous <code>README*.md</code> documents. First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">online on GitHub</a><span class="hide_on_github_pages"> (or from your project's<a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_relative_link">README.md</a> (and any successive <code>README*.md</code> files).</li>
 </ol>
 <h1 class="with_keyboard">Extra tips</h1>
 <ol class="with_keyboard">
