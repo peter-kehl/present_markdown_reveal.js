@@ -30,8 +30,10 @@ The rest of this file assumes that you are viewing its content through `index.ht
 presentation's webroot, either on GitHub pages or served by a local (or other) web server.
 
 If you are reading the rest of the file from its source (locally, or from
-<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md>), beware
-the links below that start with `blob/main/`. Such links refer to TODO
+<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md>),
+beware the links with `class="presentation_github_repo_relative_link"`. They are NOT relative to
+this file (`README_NAVIGATION.md`)! Instead, they are relative to directory of the actual
+presentation (one that referred you to this file).
 
 ---
 
@@ -53,7 +55,7 @@ the links below that start with `blob/main/`. Such links refer to TODO
    <li>You can scroll somewhat (on touchscreens only), but use two fingers to scroll.</li>
    <li>Prefer Firefox (showing code blocks better than Chrome).</li>
    <li>Bottom left button shows a list of slides & themes.</li>
-   <li>TODO COPY FROM BELOW</li>
+   <li>Alternatively, see the text-only content. It exists in <code>README*.md</code> document(s). First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted on GitHub</a><span class="hide_on_github_pages"> (or its source from your project's<a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_relative_link">README.md</a> (and any successive <code>README*.md</code> files).</li>
 </ol>
 <h1 class="with_keyboard">Essentials</h1>
 <ol class="with_keyboard">
@@ -62,7 +64,7 @@ the links below that start with `blob/main/`. Such links refer to TODO
        up/down/right/left, unfortunately.</li>
    <li>Prefer Firefox (showing code blocks better than Chrome).</li>
    <li>Bottom left button shows a list of slides & themes.</li>
-   <li>Alternatively, see the text content as a set of limited continuous <code>README*.md</code> documents. First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">online on GitHub</a><span class="hide_on_github_pages"> (or from your project's<a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_relative_link">README.md</a> (and any successive <code>README*.md</code> files).</li>
+   <li>Alternatively, see the text-only content. It exists in <code>README*.md</code> document(s). First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted on GitHub</a><span class="hide_on_github_pages"> (or its source from your project's<a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_relative_link">README.md</a> (and any successive <code>README*.md</code> files).</li>
 </ol>
 <h1 class="with_keyboard">Extra tips</h1>
 <ol class="with_keyboard">
