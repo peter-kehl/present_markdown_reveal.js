@@ -75,9 +75,19 @@ plugins, hence not consuming [GitHub pages bandwidth
 limit](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#usage-limits)
 of the original project.
 
+## Use outside of GitHub
+
 This is tailored for GitHub Pages. However, all the above principles (about viewing these slides)
 are independent of GitHub. You may be able to apply this to any decent source code hub that can
-serve the files' raw content and can serve source of JS files with `text/javascript` MIME.
+serve the files' raw content and can serve source of JS files with `text/javascript` MIME. If your webserver doesn't allow to list directories starting with a dot, and if you want to list CodeTour file(s), then you need to either
+
+- put CodeTour files under `tours` directory and make `.tours` a symlink to it, or
+- have `.vscode/settings.json` pointing CodeTour to the directory where you keep CodeTour files:
+  ```
+  {
+    "codetour.customTourDirectory": "xxx"
+  }
+  ```
 
 ## Rendered with: Reveal.js
 
