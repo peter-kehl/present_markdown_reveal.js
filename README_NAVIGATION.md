@@ -176,7 +176,7 @@ scrolling on mobile). Please give that issue thums up.
    <li class="only_in_chrome">Prefer Firefox (showing code blocks better than Chrome).</li>
    <li>Bottom left button shows a list of slides & themes.</li>
    <li>Alternatively, see the text-only content. It exists in <code>README*.md</code> document(s). First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted on GitHub</a><span class="hide_on_github_pages"> (or its source from your project's <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_blob_relative_link">README.md<!-- "README.md" --></a> (and any successive <code>README*.md</code> files).</li>
-   <li>Replay <a href="https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour">VS Code Tours</a> if there is a (TODO: class and TREE INSTEAD OF A BLOB) <code>tours/</code> directory.</li>
+   <li>Replay <a href="https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour">VS Code Tours</a> if there is a (TODO: class and TREE INSTEAD OF A BLOB) <code>.tours/</code> directory.</li>
    <li>See video(s) in <code>videos/</code> directory (TODO BLOB).</li>
 </ol>
 <h1 class="only_on_computer">Essentials</h1>
