@@ -77,3 +77,27 @@ function make_tree_link_relative_to_presentation_github_repo(link, options) {
         link.href = presentation_github_repo_tree_dir + options;
     }
 }
+
+// Update <pre><code>...</code></pre> to have its code element have `data-url` pointing.... TODO
+//
+// For use with EmbedCode plugin. We can't apply this (with Anything plugin) directly to
+// <code>...</code>, because <code>...</code> ignores "class" attribute, and then Anything plugin
+// couldn't select the <code>...</code> element.
+//
+// @param code <code>...</code> element
+function make_blob_code_relative_to_project_github_repo(pre, options) {
+    var code_element = null;
+
+    for (var code of pre.getElementsByTagName('code')) {
+        if (code_element!==null) {
+            console.error("More than one <code>...</code> under the given element " +pre.tagName);
+            return;
+        }
+        code_element = code;
+    }
+    if (code_element===null) {
+        console.error("No <code>...</code> under the given element " +pre.tagName);
+        return;
+    }
+    code_element.setAttribute('data-url', "https://raw.githubusercontent.com/" +project_github_repo+ "/main/Cargo.toml");
+}

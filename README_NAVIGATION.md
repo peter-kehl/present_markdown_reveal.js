@@ -79,15 +79,20 @@ of the original project.
 
 This is tailored for GitHub Pages. However, all the above principles (about viewing these slides)
 are independent of GitHub. You may be able to apply this to any decent source code hub that can
-serve the files' raw content and can serve source of JS files with `text/javascript` MIME. If your webserver doesn't allow to list directories starting with a dot, and if you want to list CodeTour file(s), then you need to either
+serve the files' raw content and can serve source of JS files with `text/javascript` MIME. If your
+webserver doesn't allow to list directories starting with a dot, and if you want to list CodeTour
+file(s), then you need to either
 
 - put CodeTour files under `tours` directory and make `.tours` a symlink to it, or
 - have `.vscode/settings.json` pointing CodeTour to the directory where you keep CodeTour files:
+  <!-- markdownlint-disable MD040 -->
   ```
   {
     "codetour.customTourDirectory": "xxx"
   }
   ```
+  <!-- markdownlint-enable MD040 -->
+- but don't apply both (of the above), because then (local) VS Code shows the code tours twice.
 
 ## Rendered with: Reveal.js
 
@@ -185,7 +190,7 @@ scrolling on mobile). Please give that issue thums up.
    <li>You can scroll somewhat (on touchscreens only), but use two fingers to scroll.</li>
    <li class="only_in_chrome">Prefer Firefox (showing code blocks better than Chrome).</li>
    <li>Bottom left button shows a list of slides & themes.</li>
-   <li>Alternatively, see the text-only content. It exists in <code>README*.md</code> document(s). First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted on GitHub</a><span class="hide_on_github_pages"> (or its source from your project's <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_blob_relative_link">README.md<!-- "README.md" --></a> (and any successive <code>README*.md</code> files).</li>
+   <li>Alternatively, see the text-only content. It exists in <code>README*.md</code> document(s). First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md"> (TODO make relative link if LOCAL)</a><span class="hide_on_github_pages"> (or its source from your project's <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="presentation_github_repo_blob_relative_link">README.md<!-- "README.md" --></a> (and any successive <code>README*.md</code> files).</li>
    <li>Replay <a href="https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour">VS Code Tours</a> if there is a (TODO: class and TREE INSTEAD OF A BLOB) <code>.tours/</code> directory.</li>
    <li>See video(s) in <code>videos/</code> directory (TODO BLOB).</li>
 </ol>
