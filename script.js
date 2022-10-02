@@ -20,6 +20,10 @@ var presentation_github_repo_blob_dir = './';
 // Like presentation_github_repo_blob_dir, but for listing directories.
 var presentation_github_repo_tree_dir = './';
 
+// This will be inferred only if it was not set, and only if the presentation is accessed from
+// GitHub Pages. TODO infer.
+var project_github_repo;
+
 (() => {
     /** Get an URL relative to this project's webroot.
      *  @param absolute_url Must be under this project's webroot.
