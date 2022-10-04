@@ -4,7 +4,7 @@
 //
 // If index.html is loaded from
 // project-owner.github.io/project-name/some/path/index.html (on GitHub Pages), then
-// presentation_github_repo_blob_dir will be a URL to the "main" branch's "blob" base
+// presentation_github_repo_blob_dir will be a URL to the "blob" base
 // URL for the same "some/path" (sub)directory. (For the above example, this URL would be
 // https://github.com/project-owner/project-name/blob/main/some/path/). That allows us
 // to show highlighted source code on GitHub.
@@ -12,13 +12,18 @@
 // The above requires that the GitHub project is NOT the "primary" GitHub page of its
 // project-owner (which, if used, usually has a project name project-name.github.io)!
 //
-// The above doesn't work with "master" (branch), only with "main".
+// By default this uses `main` branch. Set `presentation_github_repo_branch` for a different branch.
 //
 // Otherwise this is the current folder (so that the user can open the files from the
 // non-GitHub Pages webserver).
 var presentation_github_repo_blob_dir = './';
 // Like presentation_github_repo_blob_dir, but for listing directories.
 var presentation_github_repo_tree_dir = './';
+
+var presentation_github_repo_branch;
+if (presentation_github_repo_branch===undefined) {
+    presentation_github_repo_branch = 'main';
+}
 
 // GitHub repo of the code to present. (By default it's same as the presentation repo). In format
 // "project-owner/repository-name". No trailing slash!
@@ -68,9 +73,9 @@ if (code_github_repo_branch===undefined) {
                 var presentation_directory_and_slash = '';
             }
             presentation_github_repo_blob_dir = "https://github.com/" +project_owner+ "/" +
-                project_name + "/blob/main/" + presentation_directory_and_slash;
+                project_name + "/blob/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
             presentation_github_repo_tree_dir = "https://github.com/" +project_owner+ "/" +
-                project_name + "/tree/main/" + presentation_directory_and_slash;
+                project_name + "/tree/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
         }
 
         if (code_github_repo===undefined) {
