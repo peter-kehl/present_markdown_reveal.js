@@ -21,7 +21,7 @@ var presentation_github_repo_blob_dir = './';
 var presentation_github_repo_tree_dir = './';
 
 // GitHub repo of the code to present. (By default it's same as the presentation repo). In format
-// "project-owner/repository-name".
+// "project-owner/repository-name". No trailing slash!
 //
 // This will be inferred only if it was not set, and only if the presentation is accessed from
 // GitHub Pages.
@@ -29,6 +29,11 @@ var presentation_github_repo_tree_dir = './';
 // If set (rather than inferred to be the same as the repo of the presentation being shown), then
 // you must set this before inclusing this file (script.js).
 var code_github_repo;
+
+var code_github_repo_branch;
+if (code_github_repo_branch===undefined) {
+    code_github_repo_branch = 'main';
+}
 
 (() => {
     /** Get an URL relative to `code_github_repo`.
@@ -111,19 +116,23 @@ function make_link_relative_to_presentation_github_repo_tree(link, options) {
 // @param options URL relative to `code_github_repo`. TODO infer with
 // relative_url_to_code_github_repo()
 function make_code_relative_to_code_github_repo_raw(pre, options) {
-    var code_element = null;
+    var code_element;
 
     for (var code of pre.getElementsByTagName('code')) {
-        if (code_element!==null) {
-            console.error("More than one <code>...</code> under the given element " +pre.tagName);
+        if (code_element!==undefined) {
+            console.error("More than one <code>...</code> under the given element " +pre.innerHtml);
             return;
         }
         code_element = code;
     }
-    if (code_element===null) {
-        console.error("No <code>...</code> under the given element " +pre.tagName);
+    if (code_element===undefined) {
+        console.error("No <code>...</code> under the given element " +pre.innerHtml);
         return;
     }
+    var data_url = code_element.getAttribute('data-url');
+    if (!data_url[0] !== '/') {
+        data_url = '/' + data_url;
+    }
     // @TODO LATER local links -> store code_github_repo in 2 parts: code_project_owner and code_project_name
-    code_element.setAttribute('data-url', "https://raw.githubusercontent.com/" +code_github_repo+ "/main/Cargo.toml");
+    code_element.setAttribute('data-url', "https://raw.githubusercontent.com/" + code_github_repo + '/' + code_github_repo_branch + data_url);
 }
