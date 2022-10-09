@@ -1,23 +1,24 @@
 /*
 If you are reusing
-https://peter-kehl.github.io/present_on_github_with_reveal.js/README_NAVIGATION.md in
-other presentations, you can hide any of the following CSS classes, if not used:
-- .vs_code_tours,
-- .videos and
-- .vs_code_github_dev
+https://peter-kehl.github.io/present_on_github_with_reveal.js/README_NAVIGATION.md in other
+presentations, you can hide any of the following CSS classes, if not used:
+- tours,
+- bookmarks,
+- videos and
+- vs_code_github_dev
 
 with CSS: {display: none !important;}
 */
 .reveal p {
-text-align: left;
+    text-align: left;
 }
 .reveal ul {
-display: block;
-flex-wrap: wrap !important;
+    display: block;
+    flex-wrap: wrap !important;
 }
 .reveal ol {
-display: block;
-flex-wrap: wrap !important;
+    display: block;
+    flex-wrap: wrap !important;
 }
 /** TODO remove hide_with_reveal_js if not used*/
 .hide_with_reveal_js {
@@ -49,9 +50,29 @@ section {
     height: 100%;
     bottom: 0px;
 }
-/* Thanks to https://www.ryadel.com/en/css3-media-query-target-only-ie-ie6-ie11-firefox-chrome-safari-edge */
-@media not all and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    .only_in_chrome {
-        display: none !important;
+
+.only_in_firefox_list_item {
+    display: none;
+}
+
+/* Thanks to https://www.geeksforgeeks.org/targeting-only-firefox-with-css */
+@-moz-document url-prefix() {
+    .only_in_firefox_list_item {
+        display:list-item;
     }
 }
+
+/*
+Contrary to online tips, neither of the following two differentiates Chrome from Firefox 105. Hence
+we use .only_in_chrome instead (and we activate it in script.js).
+
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+
+    .only_in_chrome_list_item {...}
+}
+
+@supports (-webkit-appearance:none) {
+
+    .only_in_chrome_list_item{...}
+}
+*/

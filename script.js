@@ -1,21 +1,166 @@
 "use strict";
 
+// Rather sharing a (global) one, we return a new object. This allows us to re-use this with
+// mutliple (embedded) presentations, too.
+//
+// More info about initialization & config:
+// - https://revealjs.com/initialization/
+// - https://revealjs.com/config/
+function reveal_js_config() {
+    return {
+        slideNumber: "c/t",
+        hash: true,
+        hashOneBasedIndex: true,
+        // Thanks to https://salferrarello.com/creating-slide-decks-with-reveal-js:
+        history: true,
+        
+        // For better screen utilization on mobile/responsive. However, this makes the back/forth
+        // slide navigation arrows almost invisible at their default position (bottom right) on both
+        // Firefox & Chrome for Android (as of September 2022). Hence we also changed controlsLayout
+        // below.
+        disableLayout: true,
+
+        // On Firefox for small Android, the default (faded) back arrow is almost invisible.
+        controlsBackArrows: 'visible',
+
+        // Let Up and Down arrows, PageUp and PageDown, HOME and END apply to the current slide. We
+        // want this because we allow zooming and scrolling through any slide.
+        keyboardCondition: function(event) {
+            return event.key!=="ArrowUp" && event.key!=="ArrowDown" &&
+            event.key!=="PageUp" && event.key!=="PageUp" &&
+            event.key!=="Home" && event.key!=="End";
+        },
+
+        // With disableLayout: true, both Firefox & Chrome for Android (as of Sep 2022) almost hide
+        // the control arrows in their default location (bottom right). But 'edges' works better.
+        controlsLayout: 'edges',
+
+        // width and margin help <pre><code> have more space
+        width: "100%",
+        margin: 0,
+        // Don't use: height: "100%". Otherwise <pre><code> is narrow.
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+            // The following four plugins have to be initialized in this order, so they process
+            // content in this order.
+            RevealMarkdown,
+            // Before EmbedCode, so that we can adjust <code>'s data-url
+            RevealAnything,
+            EmbedCode,
+            RevealHighlight,
+            RevealMenu,
+            RevealSearch ],
+        
+        // As per https://github.com/denehyg/reveal.js-menu#configuration
+        menu: {
+            // themes: true,
+            themes:  [
+                {
+                    name: 'Dark',
+                    theme: '../reveal.js/dist/theme/black_compact_verbatim_headers.css',
+                    // Reveal.js comes with only two highlighting themes, both darkish. You could
+                    // use: highlightTheme: '../reveal.js/plugin/highlight/monokai.css'
+                    //
+                    // highlightTheme: '../reveal.js/plugin/highlight/zenburn.css'
+                    //
+                    // OR choose from many themes from https://highlightjs.org, for example:
+                    //
+                    // The only dark high contrast highlight theme:
+                    highlightTheme: 'https://highlightjs.org/static/demo/styles/base16/windows-high-contrast.css'
+                    //
+                    // But, if you expect high traffic, clone
+                    // https://github.com/highlightjs/highlight.js next to this repo, enable GitHub
+                    // Pages for it, and use (for example):
+                    //
+                    // highlightTheme: '../highlight.js/src/styles/base16/windows-high-contrast.css'
+                },
+                {
+                    name: 'Light',
+                    theme: '../reveal.js/dist/theme/white_compact_verbatim_headers.css',
+                    // No light highlight themes in Reveal.js. The only light high contrast
+                    // highlight theme:
+                    highlightTheme: 'https://highlightjs.org/static/demo/styles/base16/windows-high-contrast-light.css'
+                    //
+                    // But, if you expect high traffic, clone and enable GitHub Pages for it.
+                    // https://github.com/highlightjs/highlight.js next to this repo and use (for
+                    // example):
+                    //
+                    // highlightTheme:
+                    // '../highlight.js/src/styles/base16/windows-high-contrast-light.css'
+                }
+
+            ],
+            themesPath: '../reveal.js/dist/theme/',
+            transitions: ['None', 'Fade', 'Slide']
+        },
+        anything: [
+            {
+                className: "link_relative_to_presentation_github_repo_blob",
+                // The HTML comment inside the link (<a href="relative/source/link">any
+                // link-text<!-- "relative/source/link" --> any link text</a>) duplicates the
+                // (relative) href.
+                //
+                // That is not automated any more (it's not inferred from href value).
+                //
+                // TODO Apply automation - once we have relative_url_to_code_github_repo() in
+                // script.js; or REMOVE THIS COMMENT.
+                //
+                // From ../present_on_github_with_reveal.js/script.js
+                initialize: make_link_relative_to_presentation_github_repo_blob
+            },
+            {
+                // Like presentation_github_repo_blob_relative_link, but this is for listing of
+                // directories.
+                className: "link_relative_to_presentation_github_repo_tree",
+                // From ../present_on_github_with_reveal.js/script.js
+                initialize: make_link_relative_to_presentation_github_repo_tree
+            },
+            {
+                className: "code_relative_to_code_github_repo_raw",
+                // From ../present_on_github_with_reveal.js/script.js
+                initialize: make_code_relative_to_code_github_repo_raw
+            }
+        ]
+    };
+}
+
+function initialize_slides() {
+    if (document.location.protocol.startsWith("http")) {
+        var css = document.createElement('style');
+        css.innerHTML = ".hide_with_web_server {display: none !important;}";
+        document.head.appendChild(css);
+
+        if (document.location.host.endsWith(".github.io")) {
+            var css = document.createElement('style');
+            css.innerHTML = ".hide_on_github_pages {display: none !important;}";
+            document.head.appendChild(css);
+        }
+    }
+
+    // Thanks to https://codepedia.info/detect-browser-in-javascript
+    let onChrome = navigator.userAgent.match(/chrome|chromium|crios/i);
+    if (!onChrome) {
+        document.head.appendChild(document.createElement("style")).innerHTML =
+             ".only_in_chrome {display: none;}";
+    }
+}
+
 // For use with link_relative_to_presentation_github_repo_blob.
 //
-// If index.html is loaded from
-// project-owner.github.io/project-name/some/path/index.html (on GitHub Pages), then
-// presentation_github_repo_blob_dir will be a URL to the "blob" base
-// URL for the same "some/path" (sub)directory. (For the above example, this URL would be
-// https://github.com/project-owner/project-name/blob/main/some/path/). That allows us
-// to show highlighted source code on GitHub.
+// If index.html is loaded from project-owner.github.io/project-name/some/path/index.html (on GitHub
+// Pages), then presentation_github_repo_blob_dir will be a URL to the "blob" base URL for the same
+// "some/path" (sub)directory. (For the above example, this URL would be
+// https://github.com/project-owner/project-name/blob/main/some/path/). That allows us to show
+// highlighted source code on GitHub.
 //
-// The above requires that the GitHub project is NOT the "primary" GitHub page of its
-// project-owner (which, if used, usually has a project name project-name.github.io)!
+// The above requires that the GitHub project is NOT the "primary" GitHub page of its project-owner
+// (which, if used, usually has a project name project-name.github.io)!
 //
 // By default this uses `main` branch. Set `presentation_github_repo_branch` for a different branch.
 //
-// Otherwise this is the current folder (so that the user can open the files from the
-// non-GitHub Pages webserver).
+// Otherwise this is the current folder (so that the user can open the files from the non-GitHub
+// Pages webserver).
 var presentation_github_repo_blob_dir = './';
 // Like presentation_github_repo_blob_dir, but for listing directories.
 var presentation_github_repo_tree_dir = './';
@@ -138,6 +283,7 @@ function make_code_relative_to_code_github_repo_raw(pre, options) {
     if (!data_url[0] !== '/') {
         data_url = '/' + data_url;
     }
-    // @TODO LATER local links -> store code_github_repo in 2 parts: code_project_owner and code_project_name
+    // @TODO LATER local links -> store code_github_repo in 2 parts: code_project_owner and
+    // code_project_name
     code_element.setAttribute('data-url', "https://raw.githubusercontent.com/" + code_github_repo + '/' + code_github_repo_branch + data_url);
 }

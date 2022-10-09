@@ -31,9 +31,17 @@ presentation's webroot, either on GitHub pages or served by a local (or other) w
 
 If you are reading the rest of the file from its source (locally, or from
 <https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md>),
-beware the links with `class="link_relative_to_presentation_github_repo_blob`. They are NOT relative
-to this file (`README_NAVIGATION.md`)! Instead, they are relative to directory of the actual
-presentation (one that referred you to this file).
+beware the links (if any) with CSS classes
+
+- `link_relative_to_presentation_github_repo_blob`
+- `link_relative_to_presentation_github_repo_tree`
+- `code_relative_to_code_github_repo_raw`
+- `tours`
+- `vs_code_github_dev`
+- `videos`
+
+They are NOT relative to this file (`README_NAVIGATION.md`)! Instead, they are relative to directory
+of the actual presentation (one that referred you to this file).
 
 ---
 
@@ -181,48 +189,41 @@ scrolling on mobile). Please give that issue thums up.
      https://github.com/DavidAnson/vscode-markdownlint > MD033.
 -->
 <!-- markdownlint-disable MD033 -->
-<ol class="only_on_mobile">
-   <li class="only_in_chrome">Prefer Firefox. Otherwise, (in mobile Chrome) you sometimes can't see
-   the top or the bottom of the slides. To see them (in Chrome), scroll all the way down and back
-   up.</li>
-   <li class="only_on_portrait">Rotate the screen (to landscape).</li>
-   <li><strong>Zoom out</strong> until you see rows starting with 5, 4, 3, 2, 1, 0 below.</li>
-   <li>You can scroll somewhat (on touchscreens only), but use two fingers to scroll.</li>
-   <li class="only_in_chrome">Prefer Firefox (showing code blocks better than Chrome).</li>
-   <li>Bottom left button shows a list of slides & themes.</li>
-   <li>Alternatively, see the text-only content. It exists in <code>README*.md</code> document(s). First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md"> (TODO make relative link if LOCAL)</a><span class="hide_on_github_pages"> (or its source from your project's <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="link_relative_to_presentation_github_repo_blob>README.md<!-- "README.md" --></a> (and any successive <code>README*.md</code> files).</li>
-   <li>Replay <a href="https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour">VS Code Tours</a> if there is a (TODO: class and TREE INSTEAD OF A BLOB) <code>.tours/</code> directory.</li>
-   <li>See video(s) in <code>videos/</code> directory (TODO BLOB).</li>
-</ol>
-<h1 class="only_on_computer">Essentials</h1>
-<ol class="only_on_computer">
-   <li><strong>Zoom out</strong> until you see rows starting with 5, 4, 3, 2, 1, 0 below.</li>
-   <li><a href="https://github.com/hakimel/reveal.js/issues/118">Can't scroll</a>
-       up/down/right/left, unfortunately.</li>
-   <li>Prefer Firefox (showing code blocks better than Chrome).</li>
-   <li>Bottom left button shows a list of slides & themes.</li>
-   <li>Alternatively, see the text-only content. It exists in <code>README*.md</code> document(s). First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted on GitHub</a><span class="hide_on_github_pages"> (or its source from your project's <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Only then go to <a href="README.md" class="link_relative_to_presentation_github_repo_blob>README.md<!-- "README.md" --></a> (and any successive <code>README*.md</code> files).</li>
-</ol>
-<h1 class="only_on_computer">Extra tips</h1>
-<ol class="only_on_computer">
-   <li>Navigate forth and back with arrow keys.</li>
-   <li>Press <strong>?</strong> (question mark) to for help.</li>
-   <li>Press <strong>o</strong> (lowercase), or <strong>`ESC`</strong> key, to show (or hide) an
+<h2 class="only_on_computer">Essentials</h1>
+<ul>
+   <li class="only_on_portrait only_on_mobile">Rotate the screen (to landscape).</li>
+   <li class="only_in_firefox_list_item only_on_mobile">Scrolling is tricky (in Mobile Firefox). Scroll with two fingers.
+   </li>
+   <li class="only_in_chrome">Suggest Firefox (showing code blocks better than Chrome).</li>
+   <li>Bottom left button: List of slides & themes.</li>
+   <!-- TODO vscode.dev & github.dev links -->
+   <li class="videos">See video(s) in <code>videos/</code> directory (TODO TREE).
+   <li class="tours">Replay tour(s) from <code>.tours/</code> directory (TODO TREE) in VS Code with
+      <a href="README_CODETOUR.md">Code Tour</a>.
+   </li>
+   <li class="bookmarks">Follow bookmarks in VS Code with
+      <a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks">
+          Bookmarks</a>.</li>
+   </li>
+   <li>Text-only or Local: First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md"></a><!-- @TODO make relative link if LOCAL--><span class="hide_on_github_pages"> (or its source from your project's <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Then read TODO <code>README.md</code> <a href="README.md" class="link_relative_to_presentation_github_repo_blob>README.md<!-- "README.md" --></a> (and any successive <code>README*.md</code> files).
+   </li>
+</ul>
+<h2 class="only_on_computer">Extra tips</h1>
+<ul class="only_on_computer">
+   <li><strong>Left</strong> & <strong>Right</strong> keys to switch slides.</li>
+   <li><strong>?</strong> (question mark) for help.</li>
+   <li><strong>`ESC`</strong> or <strong>o</strong> (lowercase) to show (or hide) an
        <strong>overview</strong> of the nearby slides. (Navigate through the overview with arrow
        keys.)</li>
-   <li>Press <strong>Ctrl Shift F</strong> to show (or hide) a <strong>search</strong> input
-       (at the top right). Type the text and <strong>Enter</strong>. Click anywhere on the slide
-       to use the keys for navigation again. This search is <strong>sticky</strong>: Any matching
-       text will stay highlighted, even as you navigate to other slides. And the search results get
-       highlighted in <strong>overview</strong>, too.</li>
-</ol>
+   <li><strong>Ctrl Shift F</strong> to show (or hide) a <strong>search</strong> input
+       (at the top right).
+       <ul>
+           <li>Type the text and <strong>Enter</strong>.</li>
+           <li>Click anywhere on the slide to use the keys for navigation again.</li>
+           <li>This search is <strong>sticky</strong>: Any matching text will stay highlighted,
+               even as you navigate to other slides.</li>
+           <li>Search results get highlighted in the <strong>overview</strong>, too.</li>
+       </ul>
+   </li>
+</ul>
 <!-- markdownlint-enable MD033 -->
-
-```html
-    5
-    4
-    3
-    2
-    1
-    0
-```
