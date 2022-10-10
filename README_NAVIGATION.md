@@ -205,7 +205,7 @@ scrolling on mobile). Please give that issue thums up.
       <a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks">
           Bookmarks</a>.</li>
    </li>
-   <li>Text-only or Local: First see <code>README_NAVIGATION.md</code> <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md"></a><!-- @TODO make relative link if LOCAL--><span class="hide_on_github_pages"> (or its source from your project's <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor directory</a>)</span>. Then read TODO <code>README.md</code> <a href="README.md" class="link_relative_to_presentation_github_repo_blob>README.md<!-- "README.md" --></a> (and any successive <code>README*.md</code> files).
+   <li class="hide_on_github_pages">Outside of `github.io` see <code>README_NAVIGATION.md</code>: Its original <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted online</a> (or its raw source from a <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor clone</a>)</span>.
    </li>
 </ul>
 <h2 class="only_on_computer">Extra tips</h1>

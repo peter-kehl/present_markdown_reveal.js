@@ -103,22 +103,18 @@ function reveal_js_config() {
                 //
                 // That is not automated any more (it's not inferred from href value).
                 //
-                // TODO Apply automation - once we have relative_url_to_code_github_repo() in
-                // script.js; or REMOVE THIS COMMENT.
-                //
-                // From ../present_on_github_with_reveal.js/script.js
+                // TODO Apply automation - once we have presentation_absolute_link_to_relative() - or
+                // REMOVE THIS COMMENT.
                 initialize: make_link_relative_to_presentation_github_repo_blob
             },
             {
                 // Like presentation_github_repo_blob_relative_link, but this is for listing of
                 // directories.
                 className: "link_relative_to_presentation_github_repo_tree",
-                // From ../present_on_github_with_reveal.js/script.js
                 initialize: make_link_relative_to_presentation_github_repo_tree
             },
             {
                 className: "code_relative_to_code_github_repo_raw",
-                // From ../present_on_github_with_reveal.js/script.js
                 initialize: make_code_relative_to_code_github_repo_raw
             }
         ]
@@ -177,7 +173,7 @@ if (presentation_github_repo_branch===undefined) {
 // GitHub Pages.
 //
 // If set (rather than inferred to be the same as the repo of the presentation being shown), then
-// you must set this before inclusing this file (script.js).
+// you must set this before including this file (script.js).
 var code_github_repo;
 
 var code_github_repo_branch;
@@ -186,13 +182,26 @@ if (code_github_repo_branch===undefined) {
 }
 
 (() => {
-    /** Get an URL relative to `code_github_repo`.
-     *  @param absolute_url Must be under `code_github_repo`.
+    /** Get an URL relative to the presentation's URL (`index.html`).
+     *  @param absolute_url May be outside the presentation's URL's leaf directory (then the result
+     *  will start with "../"). But it must be under the same `origin` (domain/host and protocol).
      *
-     *  TODO or REMOVE
+     *  @return Relative URL for given `absolute_url`, if it's under the current document's URL;
+     *  `undefined` otherwise.
      */
-    function relative_url_to_code_github_repo(absolute_url) {
-        document.location.href;
+    function presentation_absolute_link_to_relative(given_absolute_url) {
+        if (!given_absolute_url.startsWith(document.location.origin)) {
+            return undefined;
+        }
+        var given_pathname = given_absolute_url.substring(document.location.origin.length);
+
+        // Absolute URL to the presentation's root (excluding "index.html", but including the
+        // trailing slash "/")
+        var presentation_pathname = document.location.pathname;
+        if (presentation_pathname.endsWith("/index.html")) {
+            presentation_pathname = presentation_pathname.substring(0, presentation_pathname.length-10);
+        }
+
     }
 
     if (document.location.protocol.startsWith("http") && document.location.host.endsWith(".github.io")) {
@@ -255,7 +264,7 @@ function make_link_relative_to_presentation_github_repo_tree(link, options) {
 }
 
 // Update `<code>` in `<pre><code>...</code></pre>` to have its code element have `data-url`
-// pointing to a raw (unhighlighted) file contentfor relative URL given in `options` param.
+// pointing to a raw (unhighlighted) file content for relative URL given in `options` param.
 //
 // For use with `Anything` and `EmbedCode` plugins. We can't apply this (with Anything plugin)
 // directly to <code>...</code>, because <code>...</code> ignores "class" attribute, and then
@@ -263,8 +272,7 @@ function make_link_relative_to_presentation_github_repo_tree(link, options) {
 //
 // @param code <code>...</code> element
 //
-// @param options URL relative to `code_github_repo`. TODO infer with
-// relative_url_to_code_github_repo()
+// @param options URL relative to `code_github_repo`.
 function make_code_relative_to_code_github_repo_raw(pre, options) {
     var code_element;
 
