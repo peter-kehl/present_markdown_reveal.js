@@ -274,6 +274,8 @@ function change_link_github_pages_to_highlighted(link, is_dir) {
     }*/
     var given_url_parts = given_url.split('/');
     var presentation_pathname_parts = document.location.pathname.split('/');
+    given_url_parts = given_url_parts.filter(part => part!=='');
+    presentation_pathname_parts = presentation_pathname_parts.filter(part => part!=='');
 
     // Adjust both given_url_parts and presentation_pathname_parts. Follow any parent directory
     // steps '..'. Then we can concatenate the leftover given_url_parts and
