@@ -301,7 +301,7 @@ function change_link_github_pages_to_highlighted(link, is_dir) {
 
     //var resource_path_and_query_within_repo = given_url.substring(github_pages_root.length); // excluding the leading slash
     var new_absolute_url = HTTPS_DOUBLE_SLASH + "github.com/" +presentation_github_repo_owner+ "/" +
-        repo_project + (is_dir ? "tree" : "blob") + "/" + presentation_github_repo_branch+ github_pages_pathname_excl_project;
+        repo_project + (is_dir ? "/tree" : "/blob") + "/" + presentation_github_repo_branch+ github_pages_pathname_excl_project;
     link.setAttribute("href", new_absolute_url);
 
     /*
