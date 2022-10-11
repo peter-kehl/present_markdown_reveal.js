@@ -29,16 +29,16 @@ the actual presentation), there are limitations:
 The rest of this file assumes that you are viewing its content through `index.html` in the relevant
 presentation's webroot, either on GitHub pages or served by a local (or other) web server.
 
-If you are reading the rest of the file from its source (locally, or from
-<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md>),
-beware the links (if any) with CSS classes
+If you are reading the rest of the file from its source (from
+<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md> or
+its clone), beware links (if any) with CSS classes
 
 - `link_relative_to_presentation_github_repo_blob`
 - `link_relative_to_presentation_github_repo_tree`
-- `code_relative_to_code_github_repo_raw`
+- `pre_relative_to_code_github_repo_raw`
 - `tours`
 - `vs_code_github_dev`
-- `videos`
+- `videos`.
 
 They are NOT relative to this file (`README_NAVIGATION.md`)! Instead, they are relative to directory
 of the actual presentation (one that referred you to this file).
@@ -205,10 +205,10 @@ scrolling on mobile). Please give that issue thums up.
       <a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks">
           Bookmarks</a>.</li>
    </li>
-   <li class="hide_on_github_pages">Outside of `github.io` see <code>README_NAVIGATION.md</code>: Its original <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted online</a> (or its raw source from a <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor clone</a>)</span>.
+   <li class="hide_on_github_pages">Outside of <code>github.io</code> see <code>README_NAVIGATION.md</code>: Original <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted online</a> (or raw source from a <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor clone</a>)</span>.
    </li>
 </ul>
-<h2 class="only_on_computer">Extra tips</h1>
+<h2 class="only_on_computer">Extra tips (on computer only)</h1>
 <ul class="only_on_computer">
    <li><strong>Left</strong> & <strong>Right</strong> keys to switch slides.</li>
    <li><strong>?</strong> (question mark) for help.</li>

@@ -28,7 +28,8 @@ function reveal_js_config() {
         keyboardCondition: function(event) {
             return event.key!=="ArrowUp" && event.key!=="ArrowDown" &&
             event.key!=="PageUp" && event.key!=="PageUp" &&
-            event.key!=="Home" && event.key!=="End";
+            event.key!=="Home" && event.key!=="End" &&
+            !event.shiftKey;
         },
 
         // With disableLayout: true, both Firefox & Chrome for Android (as of Sep 2022) almost hide
@@ -101,21 +102,25 @@ function reveal_js_config() {
                 // link-text<!-- "relative/source/link" --> any link text</a>) duplicates the
                 // (relative) href.
                 //
-                // That is not automated any more (it's not inferred from href value).
+                // If `href` is relative, it must be relative to the presentation's URL
+                // (`index.html`), even if the presentation itself is not right under the webroot
+                // but under a sub(sub...)directory.
                 //
-                // TODO Apply automation - once we have presentation_absolute_link_to_relative() - or
+                // TODO: That is not automated any more (it's not inferred from href value).
+                //
+                // TODO Apply automation - once we have github_pages_absolute_to_highlighted() - or
                 // REMOVE THIS COMMENT.
                 initialize: make_link_relative_to_presentation_github_repo_blob
             },
             {
-                // Like presentation_github_repo_blob_relative_link, but this is for listing of
+                // Like link_relative_to_presentation_github_repo_blob, but this is for listing of
                 // directories.
                 className: "link_relative_to_presentation_github_repo_tree",
                 initialize: make_link_relative_to_presentation_github_repo_tree
             },
             {
-                className: "code_relative_to_code_github_repo_raw",
-                initialize: make_code_relative_to_code_github_repo_raw
+                className: "pre_relative_to_code_github_repo_raw",
+                initialize: make_pre_relative_to_code_github_repo_raw
             }
         ]
     };
@@ -142,6 +147,9 @@ function initialize_slides() {
     }
 }
 
+var presentation_github_repo_owner;
+var presentation_github_repo_project;
+
 // For use with link_relative_to_presentation_github_repo_blob.
 //
 // If index.html is loaded from project-owner.github.io/project-name/some/path/index.html (on GitHub
@@ -158,6 +166,7 @@ function initialize_slides() {
 // Otherwise this is the current folder (so that the user can open the files from the non-GitHub
 // Pages webserver).
 var presentation_github_repo_blob_dir = './';
+
 // Like presentation_github_repo_blob_dir, but for listing directories.
 var presentation_github_repo_tree_dir = './';
 
@@ -182,21 +191,65 @@ if (code_github_repo_branch===undefined) {
 }
 
 (() => {
-    /** Get an URL relative to the presentation's URL (`index.html`).
-     *  @param absolute_url May be outside the presentation's URL's leaf directory (then the result
-     *  will start with "../"). But it must be under the same `origin` (domain/host and protocol).
+    // This is `https://project-owner.github.io/presentation-repo` (without any trailing slash /).
+    // (It will be inferred if the presentation is accessed under GitHub Pages).
+    //var presentation_github_pages_webroot;
+
+    const DOT_GITHUB_IO_SLASH = ".github.io/";
+
+    // Extract a GitHub owner (user/organization) name from a given GitHub Pages URL
+    // (`https://owner-user-or-organization.github.io/some-repo/folder-path/`).
+    function github_pages_to_repo_owner(given_absolute_url) {
+        var dot_github_io_substr_index = given_absolute_url.indexOf(DOT_GITHUB_IO_SLASH);
+        if (dot_github_io_substr_index>0) {
+            return given_absolute_url.substring("https://".length, dot_github_io_substr_index);
+        } else {
+            console.info("Given URL: " +given_absolute_url+ " is not an absolute URL under *.github.io. Hence can't infer a GitHub user/organization.");
+            return undefined;
+        }
+    }
+
+    // Extract a GitHub repository name from a given GitHub Pages URL
+    // (`https://owner-user-or-organization.github.io/some-repo/folder-path/`).
+    function github_pages_to_repo_project(given_absolute_url) {
+        var dot_github_io_substr_index = given_absolute_url.indexOf(DOT_GITHUB_IO_SLASH);
+        if (dot_github_io_substr_index>0) {
+            var path_and_query = given_absolute_url.substring(dot_github_io_substr_index);
+            var slash_after_repo_index = path_and_query.indexOf('/');
+            if (slash_after_repo_index>0) {
+                return path_and_query.substring(0, slash_after_repo_index);
+            } else {
+                console.info("Given URL: " +given_absolute_url+ " is under *.github.io, but with no repository path. Hence can't infer a GitHub repo.");
+                return undefined;
+            }
+        } else {
+            console.info("Given URL: " +given_absolute_url+ " is not an absolute URL under *.github.io. Hence can't infer a GitHub user/organization.");
+            return undefined;
+        }
+    }
+
+    /** Get a highlighted source code ("blob") or a directory listing ("tree") for a given absolute
+     *  URL for a GitHub Pages-served file or directory. It may be under the current presentation's
+     *  root, or somewhere else under its repository (above or outside), or even under a different
+     *  GitHub repository.
+     *  @param given_absolute_url May be above/outside the presentation's webroot. But it must be
+     *  under the same `origin` (domain/host - and GitHub owner). It may be under a different GitHub
+     *  repository.
      *
      *  @return Relative URL for given `absolute_url`, if it's under the current document's URL;
      *  `undefined` otherwise.
      */
-    function presentation_absolute_link_to_relative(given_absolute_url) {
+    function github_pages_absolute_to_highlighted(given_absolute_url) {
         if (!given_absolute_url.startsWith(document.location.origin)) {
+            console.error("Given URL " +given_absolute_url+ " is not under the presentation's origin: " +document.location.origin);
             return undefined;
         }
+
         var given_pathname = given_absolute_url.substring(document.location.origin.length);
 
-        // Absolute URL to the presentation's root (excluding "index.html", but including the
-        // trailing slash "/")
+        // presentation_github_pages_webroot
+
+        // @TODO Remove:
         var presentation_pathname = document.location.pathname;
         if (presentation_pathname.endsWith("/index.html")) {
             presentation_pathname = presentation_pathname.substring(0, presentation_pathname.length-10);
@@ -205,19 +258,26 @@ if (code_github_repo_branch===undefined) {
     }
 
     if (document.location.protocol.startsWith("http") && document.location.host.endsWith(".github.io")) {
-        var github_io_substr_index = document.location.host.indexOf(".github.io");
-        var project_owner = document.location.host.substring(0, github_io_substr_index);
+        if (presentation_github_repo_owner === undefined) {
+            presentation_github_repo_owner = github_pages_to_repo_owner(document.location.href);
+        }
+        if (presentation_github_repo_project === undefined) {
+            presentation_github_repo_project = github_pages_to_repo_project(document.location.href);
+        }
+        if (code_github_repo===undefined) {
+            code_github_repo = presentation_github_repo_owner + '/' + presentation_github_repo_project;
+        }
         
-        var pathname = document.location.pathname;
+        /*var pathname = document.location.pathname;
         var path_first_slash_index = pathname.indexOf('/');
         var path_second_slash_index;
         if (path_first_slash_index >= 0) {
             path_second_slash_index = pathname.indexOf('/', path_first_slash_index+1);
         }
         if (path_first_slash_index < 0 || path_second_slash_index < 0) {
-            console.error("Do not publish this as webroot on " +project_owner+ ".github.io. Instead, publish it under a (sub)directory.");
+            console.error("Do not publish this as webroot on " +presentation_github_repo_owner+ ".github.io. Instead, publish it under a (sub)directory under " + presentation_github_repo_owner + ".github.io/repository-name.");
         } else {
-            var project_name = pathname.substring(path_first_slash_index+1, path_second_slash_index);
+            presentation_github_repo_project = pathname.substring(path_first_slash_index+1, path_second_slash_index);
             
             var path_last_slash_index = pathname.lastIndexOf('/');
             // This presentation's (sub(sub...))directory under its GitHub project.
@@ -226,15 +286,17 @@ if (code_github_repo_branch===undefined) {
             } else {
                 var presentation_directory_and_slash = '';
             }
-            presentation_github_repo_blob_dir = "https://github.com/" +project_owner+ "/" +
-                project_name + "/blob/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
-            presentation_github_repo_tree_dir = "https://github.com/" +project_owner+ "/" +
-                project_name + "/tree/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
-        }
-
-        if (code_github_repo===undefined) {
-            code_github_repo = project_owner + '/' + project_name;
-        }        
+            presentation_github_repo_blob_dir = "https://github.com/" +presentation_github_repo_owner+ "/" +
+                presentation_github_repo_project + "/blob/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
+            presentation_github_repo_tree_dir = "https://github.com/" +presentation_github_repo_owner+ "/" +
+                presentation_github_repo_project + "/tree/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
+            if (code_github_repo===undefined) {
+                code_github_repo = presentation_github_repo_owner + '/' + presentation_github_repo_project;
+            }
+            //presentation_github_pages_webroot = "https://" + presentation_github_repo_owner + ".github.io/" + presentation_github_repo_project;
+        }*/
+    } else {
+        console.info("This is not being accessed from GitHub Pages (https://project-owner.github.io/project-name, hence can't infer some functionality.");
     }
 }
 )();
@@ -266,14 +328,20 @@ function make_link_relative_to_presentation_github_repo_tree(link, options) {
 // Update `<code>` in `<pre><code>...</code></pre>` to have its code element have `data-url`
 // pointing to a raw (unhighlighted) file content for relative URL given in `options` param.
 //
-// For use with `Anything` and `EmbedCode` plugins. We can't apply this (with Anything plugin)
-// directly to <code>...</code>, because <code>...</code> ignores "class" attribute, and then
-// Anything plugin couldn't select the <code>...</code> element.
+// For use with `Anything` and `EmbedCode` plugins. We can't apply this through a CSS class (with
+// Anything plugin) directly to `<code>...</code>`, because `<code>...</code>` and/or Reveal.js or
+// `EmbedCode` ignore "class" attribute, and then `Anything` plugin couldn't select the
+// `<code>...</code>` element.
 //
-// @param code <code>...</code> element
+// @param pre `<pre><code>...</code></pre>` element
 //
-// @param options URL relative to `code_github_repo`.
-function make_code_relative_to_code_github_repo_raw(pre, options) {
+// @param options Relative URI - relative to `code_github_repo`.
+function make_pre_relative_to_code_github_repo_raw(pre, options) {
+    if (code_github_repo===undefined) {
+        console.error("Either publish this with GitHub Pages under user-or-organization.github.io (or if published there, access it from there), or variable set code_github_repo.");
+        return;
+    }
+
     var code_element;
 
     for (var code of pre.getElementsByTagName('code')) {
@@ -291,7 +359,7 @@ function make_code_relative_to_code_github_repo_raw(pre, options) {
     if (!data_url[0] !== '/') {
         data_url = '/' + data_url;
     }
-    // @TODO LATER local links -> store code_github_repo in 2 parts: code_project_owner and
+    // @TODO LATER ? local links -> store code_github_repo in 2 parts: code_project_owner and
     // code_project_name
     code_element.setAttribute('data-url', "https://raw.githubusercontent.com/" + code_github_repo + '/' + code_github_repo_branch + data_url);
 }
