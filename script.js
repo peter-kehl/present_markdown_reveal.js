@@ -108,7 +108,7 @@ function reveal_js_config() {
                 //
                 // TODO: That is not automated any more (it's not inferred from href value).
                 //
-                // TODO Apply automation - once we have github_pages_absolute_to_highlighted() - or
+                // TODO Apply automation - once we have change_link_github_pages_to_highlighted() - or
                 // REMOVE THIS COMMENT.
                 initialize: make_link_relative_to_presentation_github_repo_blob
             },
@@ -229,28 +229,38 @@ function github_pages_to_repo_project(given_absolute_url) {
     }
 }
 
-/** Get a highlighted source code ("blob") or a directory listing ("tree") for a given absolute
- *  URL for a GitHub Pages-served file or directory. It may be under the current presentation's
- *  root, or somewhere else under its repository (above or outside), or even under a different
- *  GitHub repository.
- *  @param given_absolute_url May be above/outside the presentation's webroot. But it must be
- *  under the same `origin` (domain/host - and GitHub owner). It may be under a different GitHub
+/** Get a highlighted source code ("blob") or a directory listing ("tree") for a given absolute URL
+ *  for a GitHub Pages-served file or directory. It may be under the current presentation's root, or
+ *  somewhere else under its repository (above or outside), or even under a different GitHub
  *  repository.
+ *  @param link An `<a href="...">...</a>` element. The URL may be relative (to the presentation's
+ *  webroot, NOT necessarily the repository's GitHub webroot). It may point above/outside the
+ *  presentation's webroot. But it must be under the same `origin` (domain/host - and GitHub owner).
+ *  It may be under a different GitHub repository - but under the same GitHub user/organization.
+ *  (Browsers resolve `href` & update it to absolute.)
  *  @param is_dir Whether this is for a directory listing. Otherwise (by default) it's for a
  *  (highlighted) file content.
  *  @param branch GIT branch ("main" by default).
  *  @return Relative URL for given `absolute_url`, if it's under the current document's URL;
  *  `undefined` otherwise.
  */
-function github_pages_absolute_to_highlighted(given_absolute_url, is_dir, branch) {
-    is_dir = is_dir || false;
-    branch = branch || "main";
+function change_link_github_pages_to_highlighted(link, is_dir, branch) {
+    debugger;
+    var given_absolute_url = link.getAttribute("href");
     var repo_owner = github_pages_to_repo_owner(given_absolute_url);
     var repo_project = github_pages_to_repo_project(given_absolute_url);
 
+    if (!repo_owner || !repo_project) {
+        console.info("Couldn't modify given_absolute_url: " +given_absolute_url+ " to a GitHub highlighted blog or a directory listing.");
+        return;
+    }
+
+    is_dir = is_dir || false;
+    branch = branch || "main";
     var github_pages_root = HTTPS_DOUBLE_SLASH + repo_owner + DOT_GITHUB_IO_SLASH + repo_project + '/';
     var resource_path_and_query_within_repo = given_absolute_url.substring(github_pages_root.length); // excluding the leading slash
-    return HTTPS_DOUBLE_SLASH + "github.com/" +repo_owner+ "/" + repo_project + (is_dir ? "tree" : "blob") + "/" + branch+ '/' + resource_path_and_query_within_repo;
+    var new_absolute_url = HTTPS_DOUBLE_SLASH + "github.com/" +repo_owner+ "/" + repo_project + (is_dir ? "tree" : "blob") + "/" + branch+ '/' + resource_path_and_query_within_repo;
+    link.setAttribute("href", new_absolute_url);
 }
 
 (() => {
@@ -264,34 +274,6 @@ function github_pages_absolute_to_highlighted(given_absolute_url, is_dir, branch
         if (code_github_repo===undefined) {
             code_github_repo = presentation_github_repo_owner + '/' + presentation_github_repo_project;
         }
-        
-        /*var pathname = document.location.pathname;
-        var path_first_slash_index = pathname.indexOf('/');
-        var path_second_slash_index;
-        if (path_first_slash_index >= 0) {
-            path_second_slash_index = pathname.indexOf('/', path_first_slash_index+1);
-        }
-        if (path_first_slash_index < 0 || path_second_slash_index < 0) {
-            console.error("Do not publish this as webroot on " +presentation_github_repo_owner+ ".github.io. Instead, publish it under a (sub)directory under " + presentation_github_repo_owner + ".github.io/repository-name.");
-        } else {
-            presentation_github_repo_project = pathname.substring(path_first_slash_index+1, path_second_slash_index);
-            
-            var path_last_slash_index = pathname.lastIndexOf('/');
-            // This presentation's (sub(sub...))directory under its GitHub project.
-            if (path_second_slash_index < path_last_slash_index) {
-                var presentation_directory_and_slash = pathname.substring(path_second_slash_index+1, path_last_slash_index)+ '/';
-            } else {
-                var presentation_directory_and_slash = '';
-            }
-            presentation_github_repo_blob_dir = "https://github.com/" +presentation_github_repo_owner+ "/" +
-                presentation_github_repo_project + "/blob/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
-            presentation_github_repo_tree_dir = "https://github.com/" +presentation_github_repo_owner+ "/" +
-                presentation_github_repo_project + "/tree/" + presentation_github_repo_branch + "/" + presentation_directory_and_slash;
-            if (code_github_repo===undefined) {
-                code_github_repo = presentation_github_repo_owner + '/' + presentation_github_repo_project;
-            }
-            //presentation_github_pages_webroot = "https://" + presentation_github_repo_owner + ".github.io/" + presentation_github_repo_project;
-        }*/
     } else {
         console.info("This is not being accessed from GitHub Pages (https://project-owner.github.io/project-name, hence can't infer some functionality.");
     }
@@ -309,19 +291,13 @@ function github_pages_absolute_to_highlighted(given_absolute_url, is_dir, branch
 // For use with CSS class link_relative_to_presentation_github_repo_blob and "anything" plugin for
 // Reveal.js.
 function make_link_relative_to_presentation_github_repo_blob(link, options) {
-    if (presentation_github_repo_blob_dir!=='./') {
-        //link.href = presentation_github_repo_blob_dir + options;
-        link.setAttribute("href", github_pages_absolute_to_highlighted(link.getAttribute("href")));
-    }
+    change_link_github_pages_to_highlighted(link);
 }
 
 // Like `make_link_relative_to_presentation_github_repo_blob` but to list a directory on GitHub. Use
 // with CSS class `link_relative_to_presentation_github_repo_tree`.
 function make_link_relative_to_presentation_github_repo_tree(link, options) {
-    if (presentation_github_repo_tree_dir!=='./') {
-        //link.href = presentation_github_repo_tree_dir + options;
-        link.setAttribute("href", github_pages_absolute_to_highlighted(link.getAttribute("href"), true));
-    }
+    change_link_github_pages_to_highlighted(link, true);
 }
 
 // Update `<code>` in `<pre><code>...</code></pre>` to have its code element have `data-url`
