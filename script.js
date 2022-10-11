@@ -286,7 +286,7 @@ function change_link_github_pages_to_highlighted(link, is_dir) {
             console.error("The link's relative URL: " +given_url+ "  points outside of the presentation's domain: " +document.location.host);
             return;
         }
-        presentation_pathname_parts.splice(presentation_pathname_parts.length-1, 1);
+        presentation_pathname_parts.splice(-1, 1); // -1 means the very last item
     }
 
     var github_pages_pathname_incl_project = presentation_pathname_parts.join('/') + '/' +
