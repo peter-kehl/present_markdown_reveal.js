@@ -264,7 +264,7 @@ function change_link_github_pages_to_highlighted(link, is_dir) {
 
     // excluding search (query)
     //var presentation_url = document.location.origin + document.location.pathname;
-    if (!document.location.host!=presentation_github_repo_owner+ '.github.io') {
+    if (document.location.host != presentation_github_repo_owner+ '.github.io') {
         console.error("For now use change_link_github_pages_to_highlighted() only for the same GitHub user/organization.");
         return;
     }
