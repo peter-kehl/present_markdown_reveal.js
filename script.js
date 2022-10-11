@@ -192,68 +192,68 @@ if (code_github_repo_branch===undefined) {
 
 const HTTPS_DOUBLE_SLASH = "https://";
 
+// This is `https://project-owner.github.io/presentation-repo` (without any trailing slash /).
+// (It will be inferred if the presentation is accessed under GitHub Pages).
+//var presentation_github_pages_webroot;
+
+const DOT_GITHUB_IO_SLASH = ".github.io/";
+
+// Extract a GitHub owner (user/organization) name from a given GitHub Pages URL
+// (`https://owner-user-or-organization.github.io/some-repo/folder-path/`).
+function github_pages_to_repo_owner(given_absolute_url) {
+    var dot_github_io_substr_index = given_absolute_url.indexOf(DOT_GITHUB_IO_SLASH);
+    if (dot_github_io_substr_index>0) {
+        return given_absolute_url.substring(HTTPS_DOUBLE_SLASH.length, dot_github_io_substr_index);
+    } else {
+        console.info("Given URL: " +given_absolute_url+ " is not an absolute URL under *.github.io. Hence can't infer a GitHub user/organization.");
+        return undefined;
+    }
+}
+
+// Extract a GitHub repository name from a given GitHub Pages URL
+// (`https://owner-user-or-organization.github.io/some-repo/folder-path/`).
+function github_pages_to_repo_project(given_absolute_url) {
+    var dot_github_io_substr_index = given_absolute_url.indexOf(DOT_GITHUB_IO_SLASH);
+    if (dot_github_io_substr_index>0) {
+        var path_and_query = given_absolute_url.substring(dot_github_io_substr_index);
+        var slash_after_repo_index = path_and_query.indexOf('/');
+        if (slash_after_repo_index>0) {
+            return path_and_query.substring(0, slash_after_repo_index);
+        } else {
+            console.info("Given URL: " +given_absolute_url+ " is under *.github.io, but with no repository path. Hence can't infer a GitHub repo.");
+            return undefined;
+        }
+    } else {
+        console.info("Given URL: " +given_absolute_url+ " is not an absolute URL under *.github.io. Hence can't infer a GitHub user/organization.");
+        return undefined;
+    }
+}
+
+/** Get a highlighted source code ("blob") or a directory listing ("tree") for a given absolute
+ *  URL for a GitHub Pages-served file or directory. It may be under the current presentation's
+ *  root, or somewhere else under its repository (above or outside), or even under a different
+ *  GitHub repository.
+ *  @param given_absolute_url May be above/outside the presentation's webroot. But it must be
+ *  under the same `origin` (domain/host - and GitHub owner). It may be under a different GitHub
+ *  repository.
+ *  @param is_dir Whether this is for a directory listing. Otherwise (by default) it's for a
+ *  (highlighted) file content.
+ *  @param branch GIT branch ("main" by default).
+ *  @return Relative URL for given `absolute_url`, if it's under the current document's URL;
+ *  `undefined` otherwise.
+ */
+function github_pages_absolute_to_highlighted(given_absolute_url, is_dir, branch) {
+    is_dir = is_dir || false;
+    branch = branch || "main";
+    var repo_owner = github_pages_to_repo_owner(given_absolute_url);
+    var repo_project = github_pages_to_repo_project(given_absolute_url);
+
+    var github_pages_root = HTTPS_DOUBLE_SLASH + repo_owner + DOT_GITHUB_IO_SLASH + repo_project + '/';
+    var resource_path_and_query_within_repo = given_absolute_url.substring(github_pages_root.length); // excluding the leading slash
+    return HTTPS_DOUBLE_SLASH + "github.com/" +repo_owner+ "/" + repo_project + (is_dir ? "tree" : "blob") + "/" + branch+ '/' + resource_path_and_query_within_repo;
+}
+
 (() => {
-    // This is `https://project-owner.github.io/presentation-repo` (without any trailing slash /).
-    // (It will be inferred if the presentation is accessed under GitHub Pages).
-    //var presentation_github_pages_webroot;
-
-    const DOT_GITHUB_IO_SLASH = ".github.io/";
-
-    // Extract a GitHub owner (user/organization) name from a given GitHub Pages URL
-    // (`https://owner-user-or-organization.github.io/some-repo/folder-path/`).
-    function github_pages_to_repo_owner(given_absolute_url) {
-        var dot_github_io_substr_index = given_absolute_url.indexOf(DOT_GITHUB_IO_SLASH);
-        if (dot_github_io_substr_index>0) {
-            return given_absolute_url.substring(HTTPS_DOUBLE_SLASH.length, dot_github_io_substr_index);
-        } else {
-            console.info("Given URL: " +given_absolute_url+ " is not an absolute URL under *.github.io. Hence can't infer a GitHub user/organization.");
-            return undefined;
-        }
-    }
-
-    // Extract a GitHub repository name from a given GitHub Pages URL
-    // (`https://owner-user-or-organization.github.io/some-repo/folder-path/`).
-    function github_pages_to_repo_project(given_absolute_url) {
-        var dot_github_io_substr_index = given_absolute_url.indexOf(DOT_GITHUB_IO_SLASH);
-        if (dot_github_io_substr_index>0) {
-            var path_and_query = given_absolute_url.substring(dot_github_io_substr_index);
-            var slash_after_repo_index = path_and_query.indexOf('/');
-            if (slash_after_repo_index>0) {
-                return path_and_query.substring(0, slash_after_repo_index);
-            } else {
-                console.info("Given URL: " +given_absolute_url+ " is under *.github.io, but with no repository path. Hence can't infer a GitHub repo.");
-                return undefined;
-            }
-        } else {
-            console.info("Given URL: " +given_absolute_url+ " is not an absolute URL under *.github.io. Hence can't infer a GitHub user/organization.");
-            return undefined;
-        }
-    }
-
-    /** Get a highlighted source code ("blob") or a directory listing ("tree") for a given absolute
-     *  URL for a GitHub Pages-served file or directory. It may be under the current presentation's
-     *  root, or somewhere else under its repository (above or outside), or even under a different
-     *  GitHub repository.
-     *  @param given_absolute_url May be above/outside the presentation's webroot. But it must be
-     *  under the same `origin` (domain/host - and GitHub owner). It may be under a different GitHub
-     *  repository.
-     *  @param is_dir Whether this is for a directory listing. Otherwise (by default) it's for a
-     *  (highlighted) file content.
-     *  @param branch GIT branch ("main" by default).
-     *  @return Relative URL for given `absolute_url`, if it's under the current document's URL;
-     *  `undefined` otherwise.
-     */
-    function github_pages_absolute_to_highlighted(given_absolute_url, is_dir, branch) {
-        is_dir = is_dir || false;
-        branch = branch || "main";
-        var repo_owner = github_pages_to_repo_owner(given_absolute_url);
-        var repo_project = github_pages_to_repo_project(given_absolute_url);
-
-        var github_pages_root = HTTPS_DOUBLE_SLASH + repo_owner + DOT_GITHUB_IO_SLASH + repo_project + '/';
-        var resource_path_and_query_within_repo = given_absolute_url.substring(github_pages_root.length); // excluding the leading slash
-        return HTTPS_DOUBLE_SLASH + "github.com/" +repo_owner+ "/" + repo_project + (is_dir ? "tree" : "blob") + "/" + branch+ '/' + resource_path_and_query_within_repo;
-    }
-
     if (document.location.protocol.startsWith("http") && document.location.host.endsWith(".github.io")) {
         if (presentation_github_repo_owner === undefined) {
             presentation_github_repo_owner = github_pages_to_repo_owner(document.location.href);
@@ -311,7 +311,7 @@ const HTTPS_DOUBLE_SLASH = "https://";
 function make_link_relative_to_presentation_github_repo_blob(link, options) {
     if (presentation_github_repo_blob_dir!=='./') {
         //link.href = presentation_github_repo_blob_dir + options;
-        link.href = github_pages_absolute_to_highlighted(link.href);
+        link.setAttribute("href", github_pages_absolute_to_highlighted(link.getAttribute("href")));
     }
 }
 
@@ -320,7 +320,7 @@ function make_link_relative_to_presentation_github_repo_blob(link, options) {
 function make_link_relative_to_presentation_github_repo_tree(link, options) {
     if (presentation_github_repo_tree_dir!=='./') {
         //link.href = presentation_github_repo_tree_dir + options;
-        link.href = github_pages_absolute_to_highlighted(link.href, true);
+        link.setAttribute("href", github_pages_absolute_to_highlighted(link.getAttribute("href"), true));
     }
 }
 
