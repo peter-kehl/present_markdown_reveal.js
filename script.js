@@ -171,7 +171,7 @@ var presentation_github_repo_blob_dir = './';
 var presentation_github_repo_tree_dir = './';
 
 var presentation_github_repo_branch;
-if (presentation_github_repo_branch===undefined) {
+if (!presentation_github_repo_branch) {
     presentation_github_repo_branch = 'main';
 }
 
@@ -186,7 +186,7 @@ if (presentation_github_repo_branch===undefined) {
 var code_github_repo;
 
 var code_github_repo_branch;
-if (code_github_repo_branch===undefined) {
+if (!code_github_repo_branch) {
     code_github_repo_branch = 'main';
 }
 
@@ -233,19 +233,76 @@ function github_pages_to_repo_project(given_absolute_url) {
  *  for a GitHub Pages-served file or directory. It may be under the current presentation's root, or
  *  somewhere else under its repository (above or outside), or even under a different GitHub
  *  repository.
- *  @param link An `<a href="...">...</a>` element. The URL may be relative (to the presentation's
+ *  @param link OLD: An `<a href="...">...</a>` element. The URL may be relative (to the presentation's
  *  webroot, NOT necessarily the repository's GitHub webroot). It may point above/outside the
  *  presentation's webroot. But it must be under the same `origin` (domain/host - and GitHub owner).
  *  It may be under a different GitHub repository - but under the same GitHub user/organization.
  *  (Browsers resolve `href` & update it to absolute.)
+ *  NEW: Relative link. We do not support eccentric relative links like '../some-dir/../sibling/../and-so"
  *  @param is_dir Whether this is for a directory listing. Otherwise (by default) it's for a
  *  (highlighted) file content.
- *  @param branch GIT branch ("main" by default).
+ *  // TODO For later: @param branch GIT branch ("main" by default).
  *  @return Relative URL for given `absolute_url`, if it's under the current document's URL;
  *  `undefined` otherwise.
  */
-function change_link_github_pages_to_highlighted(link, is_dir, branch) {
+function change_link_github_pages_to_highlighted(link, is_dir) {
     debugger;
+    is_dir = is_dir || false;
+    //branch = branch || "main";
+
+    var given_url = link.getAttribute("href");
+    if (given_url.startsWith("http://") || given_url.startsWith("https://")) {
+        console.error("change_link_github_pages_to_highlighted() used with a link that has an absolute URL: " +
+            given_url + ". Use with a relative URL instead.");
+        return;
+    }
+
+    if (!presentation_github_repo_owner || !presentation_github_repo_project) {
+        console.info("Couldn't modify given link's URL: " +given_url+ " to a GitHub highlighted blog or a directory listing.");
+        return;
+    }
+
+    // excluding search (query)
+    //var presentation_url = document.location.origin + document.location.pathname;
+    if (!document.location.host!=presentation_github_repo_owner+ '.github.io') {
+        console.error("For now use change_link_github_pages_to_highlighted() only for the same GitHub user/organization.");
+        return;
+    }
+
+    /*if (given_url.startsWith('/')) {
+        given_url = given_url.substring(1);
+    }*/
+    var given_url_parts = given_url.split('/');
+    var presentation_pathname_parts = document.location.pathname.split('/');
+
+    // Adjust both given_url_parts and presentation_pathname_parts. Follow any parent directory
+    // steps '..'. Then we can concatenate the leftover given_url_parts and
+    // presentation_pathname_parts.
+    while (given_url_parts[0]==='..') {
+        given_url_parts.splice(0, 1);
+        if (!presentation_pathname_parts.length) {
+            console.error("The link's relative URL: " +given_url+ "  points outside of the presentation's domain: " +document.location.host);
+            return;
+        }
+        presentation_pathname_parts.splice(presentation_pathname_parts.length-1, 1);
+    }
+
+    var github_pages_pathname_incl_project = presentation_pathname_parts.join('/') + '/' +
+         given_url_parts.join('/');
+    var repo_project_length = github_pages_pathname_incl_project.indexOf('/');
+    if (repo_project_length<0) {
+        console.error("The link's relative URL: " +given_url+ " seemed OK, but can't be resolved for the presentation: " +document.location.href);
+        return;
+    }
+    var repo_project = github_pages_pathname_incl_project.substring(0, repo_project_length);
+    var github_pages_pathname_excl_project = github_pages_pathname_incl_project.substring(repo_project_length);
+
+    //var resource_path_and_query_within_repo = given_url.substring(github_pages_root.length); // excluding the leading slash
+    var new_absolute_url = HTTPS_DOUBLE_SLASH + "github.com/" +presentation_github_repo_owner+ "/" +
+        repo_project + (is_dir ? "tree" : "blob") + "/" + presentation_github_repo_branch+ github_pages_pathname_excl_project;
+    link.setAttribute("href", new_absolute_url);
+
+    /*
     var given_absolute_url = link.getAttribute("href");
     var repo_owner = github_pages_to_repo_owner(given_absolute_url);
     var repo_project = github_pages_to_repo_project(given_absolute_url);
@@ -255,23 +312,22 @@ function change_link_github_pages_to_highlighted(link, is_dir, branch) {
         return;
     }
 
-    is_dir = is_dir || false;
-    branch = branch || "main";
     var github_pages_root = HTTPS_DOUBLE_SLASH + repo_owner + DOT_GITHUB_IO_SLASH + repo_project + '/';
     var resource_path_and_query_within_repo = given_absolute_url.substring(github_pages_root.length); // excluding the leading slash
     var new_absolute_url = HTTPS_DOUBLE_SLASH + "github.com/" +repo_owner+ "/" + repo_project + (is_dir ? "tree" : "blob") + "/" + branch+ '/' + resource_path_and_query_within_repo;
     link.setAttribute("href", new_absolute_url);
+    */
 }
 
 (() => {
     if (document.location.protocol.startsWith("http") && document.location.host.endsWith(".github.io")) {
-        if (presentation_github_repo_owner === undefined) {
+        if (!presentation_github_repo_owner) {
             presentation_github_repo_owner = github_pages_to_repo_owner(document.location.href);
         }
-        if (presentation_github_repo_project === undefined) {
+        if (!presentation_github_repo_project) {
             presentation_github_repo_project = github_pages_to_repo_project(document.location.href);
         }
-        if (code_github_repo===undefined) {
+        if (!code_github_repo) {
             code_github_repo = presentation_github_repo_owner + '/' + presentation_github_repo_project;
         }
     } else {
@@ -312,7 +368,7 @@ function make_link_relative_to_presentation_github_repo_tree(link, options) {
 //
 // @param options Relative URI - relative to `code_github_repo`.
 function make_pre_relative_to_code_github_repo_raw(pre, options) {
-    if (code_github_repo===undefined) {
+    if (!code_github_repo) {
         console.error("Either publish this with GitHub Pages under user-or-organization.github.io (or if published there, access it from there), or variable set code_github_repo.");
         return;
     }
@@ -320,13 +376,13 @@ function make_pre_relative_to_code_github_repo_raw(pre, options) {
     var code_element;
 
     for (var code of pre.getElementsByTagName('code')) {
-        if (code_element!==undefined) {
+        if (!code_element) {
             console.error("More than one <code>...</code> under the given element " +pre.innerHtml);
             return;
         }
         code_element = code;
     }
-    if (code_element===undefined) {
+    if (!code_element) {
         console.error("No <code>...</code> under the given element " +pre.innerHtml);
         return;
     }
