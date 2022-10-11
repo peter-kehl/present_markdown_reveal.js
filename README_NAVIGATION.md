@@ -197,7 +197,7 @@ scrolling on mobile). Please give that issue thums up.
    <li class="only_in_chrome">Suggest Firefox (showing code blocks better than Chrome).</li>
    <li>Bottom left button: List of slides & themes.</li>
    <!-- TODO vscode.dev & github.dev links -->
-   <li class="videos">See video(s) in <code>videos/</code> directory (TODO TREE).
+   <li class="videos">See video(s) in <a href="videos" class="link_relative_to_presentation_github_repo_blob"><code>videos/</code></a> directory.
    <li class="tours">Replay tour(s) from <code>.tours/</code> directory (TODO TREE) in VS Code with
       <a href="README_CODETOUR.md">Code Tour</a>.
    </li>

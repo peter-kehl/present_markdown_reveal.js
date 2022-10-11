@@ -190,6 +190,8 @@ if (code_github_repo_branch===undefined) {
     code_github_repo_branch = 'main';
 }
 
+const HTTPS_DOUBLE_SLASH = "https://";
+
 (() => {
     // This is `https://project-owner.github.io/presentation-repo` (without any trailing slash /).
     // (It will be inferred if the presentation is accessed under GitHub Pages).
@@ -202,7 +204,7 @@ if (code_github_repo_branch===undefined) {
     function github_pages_to_repo_owner(given_absolute_url) {
         var dot_github_io_substr_index = given_absolute_url.indexOf(DOT_GITHUB_IO_SLASH);
         if (dot_github_io_substr_index>0) {
-            return given_absolute_url.substring("https://".length, dot_github_io_substr_index);
+            return given_absolute_url.substring(HTTPS_DOUBLE_SLASH.length, dot_github_io_substr_index);
         } else {
             console.info("Given URL: " +given_absolute_url+ " is not an absolute URL under *.github.io. Hence can't infer a GitHub user/organization.");
             return undefined;
@@ -235,26 +237,21 @@ if (code_github_repo_branch===undefined) {
      *  @param given_absolute_url May be above/outside the presentation's webroot. But it must be
      *  under the same `origin` (domain/host - and GitHub owner). It may be under a different GitHub
      *  repository.
-     *
+     *  @param is_dir Whether this is for a directory listing. Otherwise (by default) it's for a
+     *  (highlighted) file content.
+     *  @param branch GIT branch ("main" by default).
      *  @return Relative URL for given `absolute_url`, if it's under the current document's URL;
      *  `undefined` otherwise.
      */
-    function github_pages_absolute_to_highlighted(given_absolute_url) {
-        if (!given_absolute_url.startsWith(document.location.origin)) {
-            console.error("Given URL " +given_absolute_url+ " is not under the presentation's origin: " +document.location.origin);
-            return undefined;
-        }
+    function github_pages_absolute_to_highlighted(given_absolute_url, is_dir, branch) {
+        is_dir = is_dir || false;
+        branch = branch || "main";
+        var repo_owner = github_pages_to_repo_owner(given_absolute_url);
+        var repo_project = github_pages_to_repo_project(given_absolute_url);
 
-        var given_pathname = given_absolute_url.substring(document.location.origin.length);
-
-        // presentation_github_pages_webroot
-
-        // @TODO Remove:
-        var presentation_pathname = document.location.pathname;
-        if (presentation_pathname.endsWith("/index.html")) {
-            presentation_pathname = presentation_pathname.substring(0, presentation_pathname.length-10);
-        }
-
+        var github_pages_root = HTTPS_DOUBLE_SLASH + repo_owner + DOT_GITHUB_IO_SLASH + repo_project + '/';
+        var resource_path_and_query_within_repo = given_absolute_url.substring(github_pages_root.length); // excluding the leading slash
+        return HTTPS_DOUBLE_SLASH + "github.com/" +repo_owner+ "/" + repo_project + (is_dir ? "tree" : "blob") + "/" + branch+ '/' + resource_path_and_query_within_repo;
     }
 
     if (document.location.protocol.startsWith("http") && document.location.host.endsWith(".github.io")) {
@@ -313,7 +310,8 @@ if (code_github_repo_branch===undefined) {
 // Reveal.js.
 function make_link_relative_to_presentation_github_repo_blob(link, options) {
     if (presentation_github_repo_blob_dir!=='./') {
-        link.href = presentation_github_repo_blob_dir + options;
+        //link.href = presentation_github_repo_blob_dir + options;
+        link.href = github_pages_absolute_to_highlighted(link.href);
     }
 }
 
@@ -321,7 +319,8 @@ function make_link_relative_to_presentation_github_repo_blob(link, options) {
 // with CSS class `link_relative_to_presentation_github_repo_tree`.
 function make_link_relative_to_presentation_github_repo_tree(link, options) {
     if (presentation_github_repo_tree_dir!=='./') {
-        link.href = presentation_github_repo_tree_dir + options;
+        //link.href = presentation_github_repo_tree_dir + options;
+        link.href = github_pages_absolute_to_highlighted(link.href, true);
     }
 }
 
