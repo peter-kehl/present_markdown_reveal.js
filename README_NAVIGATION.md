@@ -208,7 +208,7 @@ scrolling on mobile). Please give that issue thums up.
    <li class="hide_on_github_pages">Outside of <code>github.io</code> see <code>README_NAVIGATION.md</code>: Original <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted online</a> (or raw source from a <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor clone</a>)</span>.
    </li>
 </ul>
-<h2 class="only_on_computer">Extra tips (on computer only)</h1>
+<h2 class="only_on_computer">Extras (on computer only)</h1>
 <ul class="only_on_computer">
    <li><strong>Left</strong> & <strong>Right</strong> keys to switch slides.</li>
    <li><strong>?</strong> (question mark) for help.</li>

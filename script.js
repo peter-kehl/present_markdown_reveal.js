@@ -59,7 +59,7 @@ function reveal_js_config() {
             themes:  [
                 {
                     name: 'Dark',
-                    theme: '../reveal.js/dist/theme/black_compact_verbatim_headers.css',
+                    theme: '../reveal.js/dist/theme/black_contrast_compact_verbatim_headers.css',
                     // Reveal.js comes with only two highlighting themes, both darkish. You could
                     // use: highlightTheme: '../reveal.js/plugin/highlight/monokai.css'
                     //
@@ -78,7 +78,7 @@ function reveal_js_config() {
                 },
                 {
                     name: 'Light',
-                    theme: '../reveal.js/dist/theme/white_compact_verbatim_headers.css',
+                    theme: '../reveal.js/dist/theme/white_contrast_compact_verbatim_headers.css',
                     // No light highlight themes in Reveal.js. The only light high contrast
                     // highlight theme:
                     highlightTheme: 'https://highlightjs.org/static/demo/styles/base16/windows-high-contrast-light.css'
