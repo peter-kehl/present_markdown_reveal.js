@@ -76,3 +76,14 @@ we use .only_in_chrome instead (and we activate it in script.js).
     .only_in_chrome_list_item{...}
 }
 */
+
+/*
+   Hiding the following from the help menu (shown by question mark ? key), because we disable them
+   in script.js. See script.js for more explanation.
+*/
+.overlay-help table tr:nth-of-type(7)  /* ↑ , K* /,
+.overlay-help table tr:nth-of-type(8)  /* ↓ , J */,
+.overlay-help table tr:nth-of-type(10) /* Shift + ←/↑/→/↓ */
+{
+    display: none !important;
+}

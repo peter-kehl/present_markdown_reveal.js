@@ -195,7 +195,7 @@ scrolling on mobile). Please give that issue thums up.
    <li class="only_in_firefox_list_item only_on_mobile">Scrolling is tricky (in Mobile Firefox). Scroll with two fingers.
    </li>
    <li class="only_in_chrome">Suggest Firefox (showing code blocks better than Chrome).</li>
-   <li>Bottom left button: List of slides & themes.</li>
+   <li>Bottom left button <span class="only_on_computer"> or <strong>m</strong> key (lowercase)</a>: Menu with list of slides & themes.</li>
    <!-- TODO vscode.dev & github.dev links -->
    <li class="videos">See video(s) in <a href="videos" class="link_relative_to_presentation_github_repo_blob"><code>videos/</code></a> directory.
    <li class="tours">Replay tour(s) from <code>.tours/</code> directory (TODO TREE) in VS Code with
@@ -212,7 +212,7 @@ scrolling on mobile). Please give that issue thums up.
 <ul class="only_on_computer">
    <li><strong>Left</strong> & <strong>Right</strong> keys to switch slides.</li>
    <li><strong>?</strong> (question mark) for help.</li>
-   <li><strong>`ESC`</strong> or <strong>o</strong> (lowercase) to show (or hide) an
+   <li><strong>`ESC`</strong> or <strong>o</strong> key (lowercase) to show (or hide) an
        <strong>overview</strong> of the nearby slides. (Navigate through the overview with arrow
        keys.)</li>
    <li><strong>Ctrl Shift F</strong> to show (or hide) a <strong>search</strong> input

@@ -25,6 +25,10 @@ function reveal_js_config() {
 
         // Let Up and Down arrows, PageUp and PageDown, HOME and END apply to the current slide. We
         // want this because we allow zooming and scrolling through any slide.
+        //
+        // Also disable any shortcuts when Shift is pressed - so that the user can click & then
+        // Shift (repeatedd) right arrow, or Shift (repeated) left arrow to select text to
+        // highlight.
         keyboardCondition: function(event) {
             return event.key!=="ArrowUp" && event.key!=="ArrowDown" &&
             event.key!=="PageUp" && event.key!=="PageUp" &&
@@ -369,7 +373,6 @@ function make_link_relative_to_presentation_github_repo_tree(link, options) {
 //
 // @param options Relative URI - relative to `code_github_repo`.
 function make_pre_relative_to_code_github_repo_raw(pre, options) {
-    debugger;
     if (!code_github_repo) {
         console.error("Either publish this with GitHub Pages under user-or-organization.github.io (or if published there, access it from there), or variable set code_github_repo.");
         return;
