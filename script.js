@@ -246,7 +246,6 @@ function github_pages_to_repo_project(given_absolute_url) {
  *  `undefined` otherwise.
  */
 function change_link_github_pages_to_highlighted(link, is_dir) {
-    debugger;
     is_dir = is_dir || false;
     //branch = branch || "main";
 
@@ -370,6 +369,7 @@ function make_link_relative_to_presentation_github_repo_tree(link, options) {
 //
 // @param options Relative URI - relative to `code_github_repo`.
 function make_pre_relative_to_code_github_repo_raw(pre, options) {
+    debugger;
     if (!code_github_repo) {
         console.error("Either publish this with GitHub Pages under user-or-organization.github.io (or if published there, access it from there), or variable set code_github_repo.");
         return;
@@ -378,7 +378,7 @@ function make_pre_relative_to_code_github_repo_raw(pre, options) {
     var code_element;
 
     for (var code of pre.getElementsByTagName('code')) {
-        if (!code_element) {
+        if (code_element) {
             console.error("More than one <code>...</code> under the given element " +pre.innerHtml);
             return;
         }
