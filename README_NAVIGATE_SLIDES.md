@@ -1,5 +1,12 @@
 <!-- .slide: data-visibility="hidden" -->
 
+<!-- 
+  TODO DOC: If we injected a class="only_on_computer" for a slide, the class would have an effect
+  on the content of the slide. However, the slide itself would show up regardless. So if the class
+  did apply, the slide would show up as blank!
+-->
+
+
 # SEE SLIDES
 
 This file is only a part of multiple sets of presentation slides. If you are reading this, consider
@@ -30,7 +37,7 @@ The rest of this file assumes that you are viewing its content through `index.ht
 presentation's webroot, either on GitHub pages or served by a local (or other) web server.
 
 If you are reading the rest of the file from its source (from
-<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md> or
+<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATE_SLIDES.md> or
 its clone), beware links (if any) with CSS classes
 
 - `link_relative_to_presentation_github_repo_blob`
@@ -40,7 +47,7 @@ its clone), beware links (if any) with CSS classes
 - `vs_code_github_dev`
 - `videos`.
 
-They are NOT relative to this file (`README_NAVIGATION.md`)! Instead, they are relative to directory
+They are NOT relative to this file (`README_NAVIGATE_SLIDES.md`)! Instead, they are relative to directory
 of the actual presentation (one that referred you to this file).
 
 ---
@@ -176,7 +183,8 @@ scrolling on mobile). Please give that issue thums up.
 
 ---
 
-# Slides Navigation
+<!-- .slide: id="Navigate_Slides" -->
+# Navigate Slides
 
 <!-- Can't apply https://revealjs.com/markdown/#element-attributes like .element: class="..."
      to list items. That doesn't add the class to the whole list item, but it adds the class only to
@@ -189,41 +197,63 @@ scrolling on mobile). Please give that issue thums up.
      https://github.com/DavidAnson/vscode-markdownlint > MD033.
 -->
 <!-- markdownlint-disable MD033 -->
-<h2 class="only_on_computer">Essentials</h1>
+<h2>Essentials</h1>
 <ul>
-   <li class="only_on_portrait only_on_mobile">Rotate the screen (to landscape).</li>
-   <li class="only_in_firefox_list_item only_on_mobile">Scrolling is tricky (in Mobile Firefox). Scroll with two fingers.
+   <li class="only_on_mobile">Suggest a computer. Last line of slides often doesn't show up on mobile.
    </li>
-   <li class="only_in_chrome">Suggest Firefox (showing code blocks better than Chrome).</li>
-   <li>Bottom left button <span class="only_on_computer"> or <strong>m</strong> key (lowercase)</a>: Menu with list of slides & themes.</li>
+   <li class="only_on_portrait only_on_mobile">Rotate the screen (to landscape).
+   </li>
+   <li class="only_in_firefox_list_item only_on_mobile">Scrolling is tricky in Mobile Firefox.
+   </li>
+   <li class="only_in_chrome">Suggest Firefox (showing code blocks better than Chrome).
+   </li>
+   <li>Bottom left button<span class="only_on_computer"> or <strong>m</strong> key
+      (lowercase)</span>: Menu with list of slides & themes.
+   </li>
    <!-- TODO vscode.dev & github.dev links -->
-   <li class="videos">See video(s) in <a href="videos" class="link_relative_to_presentation_github_repo_blob"><code>videos/</code></a> directory.
-   <li class="tours">Replay tour(s) from <code>.tours/</code> directory (TODO TREE) in VS Code with
-      <a href="README_CODETOUR.md">Code Tour</a>.
+   <li class="videos">See video(s) in <a href="videos"
+      class="link_relative_to_presentation_github_repo_blob"><code>videos/</code></a> directory.
    </li>
    <li class="bookmarks">Follow bookmarks in VS Code with
       <a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks">
           Bookmarks</a>.</li>
    </li>
-   <li class="hide_on_github_pages">Outside of <code>github.io</code> see <code>README_NAVIGATION.md</code>: Original <a href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATION.md">highlighted online</a> (or raw source from a <a href="../present_on_github_with_reveal.js/README_NAVIGATION.md">neighbor clone</a>)</span>.
+   <li class="hide_on_github_pages">Outside of <code>github.io</code> see
+      <code>README_NAVIGATE_SLIDES.md</code>: Original <a
+      href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATE_SLIDES.md">highlighted
+      online</a> (or raw source from a
+      <a href="../present_on_github_with_reveal.js/README_NAVIGATE_SLIDES.md">neighbor clone</a>).
    </li>
 </ul>
-<h2 class="only_on_computer">Extras (on computer only)</h1>
-<ul class="only_on_computer">
-   <li><strong>Left</strong> & <strong>Right</strong> keys to switch slides.</li>
-   <li><strong>?</strong> (question mark) for help.</li>
-   <li><strong>`ESC`</strong> or <strong>o</strong> key (lowercase) to show (or hide) an
-       <strong>overview</strong> of the nearby slides. (Navigate through the overview with arrow
-       keys.)</li>
-   <li><strong>Ctrl Shift F</strong> to show (or hide) a <strong>search</strong> input
-       (at the top right).
+<h2>Extras (on computer only)</h1>
+<ul>
+   <li class="only_on_mobile">Easier navigation through slides and search.
+   </li>
+   <li class="only_on_computer"><strong>Left</strong> & <strong>Right</strong> keys to switch slides.
+   </li>
+   <li class="only_on_computer"><strong>?</strong> (question mark) for keyboard shortcuts.
+   </li>
+   <li class="only_on_computer"><strong>ESC</strong> or <strong>o</strong> key (lowercase) to show
+       (or hide) an <strong>overview</strong> of the nearby slides. (Navigate through the overview
+       with arrow keys.)
+   </li>
+   <li class="only_on_computer"><strong>Ctrl Shift F</strong> to show (or hide) a
+       <strong>search</strong> input (at the top right).
        <ul>
-           <li>Type the text and <strong>Enter</strong>.</li>
-           <li>Click anywhere on the slide to use the keys for navigation again.</li>
+           <li>Type the text and <strong>Enter</strong>.
+           </li>
+           <li>Click anywhere on the slide to use the keys for navigation again.
+           </li>
            <li>This search is <strong>sticky</strong>: Any matching text will stay highlighted,
-               even as you navigate to other slides.</li>
-           <li>Search results get highlighted in the <strong>overview</strong>, too.</li>
+               even as you navigate to other slides.
+           </li>
+           <li>Search results get highlighted in the <strong>overview</strong>, too.
+           </li>
        </ul>
+   </li>
+   <li class="tours">Replay tour(s) from <code>.tours/</code> directory (TODO TREE) in VS Code with
+      <a href="https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour">Code
+      Tour</a>.
    </li>
 </ul>
 <!-- markdownlint-enable MD033 -->

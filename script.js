@@ -65,18 +65,16 @@ function reveal_js_config() {
                     name: 'Dark',
                     theme: '../reveal.js/dist/theme/black_contrast_compact_verbatim_headers.css',
                     // Reveal.js comes with only two highlighting themes, both darkish. You could
-                    // use: highlightTheme: '../reveal.js/plugin/highlight/monokai.css'
+                    // use:
+                    // - highlightTheme: '../reveal.js/plugin/highlight/monokai.css'
+                    // - highlightTheme: '../reveal.js/plugin/highlight/zenburn.css'
                     //
-                    // highlightTheme: '../reveal.js/plugin/highlight/zenburn.css'
-                    //
-                    // OR choose from many themes from https://highlightjs.org, for example:
-                    //
-                    // The only dark high contrast highlight theme:
+                    // Or choose from many themes from https://highlightjs.org. But the only dark
+                    // high contrast highlight theme:
                     highlightTheme: 'https://highlightjs.org/static/demo/styles/base16/windows-high-contrast.css'
                     //
-                    // But, if you expect high traffic, clone
-                    // https://github.com/highlightjs/highlight.js next to this repo, enable GitHub
-                    // Pages for it, and use (for example):
+                    // Or, clone https://github.com/highlightjs/highlight.js next to this repo,
+                    // enable GitHub Pages for it, and use (for example):
                     //
                     // highlightTheme: '../highlight.js/src/styles/base16/windows-high-contrast.css'
                 },
@@ -87,9 +85,8 @@ function reveal_js_config() {
                     // highlight theme:
                     highlightTheme: 'https://highlightjs.org/static/demo/styles/base16/windows-high-contrast-light.css'
                     //
-                    // But, if you expect high traffic, clone and enable GitHub Pages for it.
-                    // https://github.com/highlightjs/highlight.js next to this repo and use (for
-                    // example):
+                    // Or, clone https://github.com/highlightjs/highlight.js next to this repo and
+                    // use (for example):
                     //
                     // highlightTheme:
                     // '../highlight.js/src/styles/base16/windows-high-contrast-light.css'
@@ -144,10 +141,26 @@ function initialize_slides() {
     }
 
     // Thanks to https://codepedia.info/detect-browser-in-javascript
-    let onChrome = navigator.userAgent.match(/chrome|chromium|crios/i);
+    var onChrome = navigator.userAgent.match(/chrome|chromium|crios/i);
     if (!onChrome) {
         document.head.appendChild(document.createElement("style")).innerHTML =
              ".only_in_chrome {display: none;}";
+    }
+
+    // Not exact (unsure about smart TV's etc.), but good enough.
+    // Thanks to https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3.
+    var onDesktop = !(/Android|webOS|iPhone|iPad|iPod|kindle|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    if (onDesktop) {
+        var slidesNavigationSection = document.getElementById("README_NAVIGATE_SLIDES");
+        if (slidesNavigationSection) {
+            // Can't conditionally enable the following with CSS by having
+            // <section class="only_on_computer" ...> in HTML. Neither by applying CSS in Markdown
+            // (https://revealjs.com/markdown/#element-attributes) by having:
+            // <!-- .element: class="..." -->
+            // Hence we inject it in Javascript:
+            slidesNavigationSection.insertAdjacentHTML("afterend",
+                '<section data-markdown="../present_on_github_with_reveal.js/README_NAVIGATE_CODETOUR.md"></section>');
+        }
     }
 }
 

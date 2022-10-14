@@ -1,3 +1,6 @@
+<!-- .slide: id="Navigate_with_CodeTour" -->
+# Navigate with CodeTour
+
 # Follow with CodeTour
 
 <!-- markdownlint-disable MD033 -->
