@@ -35,17 +35,19 @@ Work in progress. See <https://peter-kehl.github.io/no_std_rust_libs> and
 <!-- .slide: id="Suggestions_Markdown_File_Names" -->
 # Markdown File Names
 
-- Name them `README.md` and `README_*.md`
+- Name them `README.md` and `README-*.md`. Uppercase seems to be the standard on GitHub (like
+  `LICENSE-MIT, LICENSE-APACHE`...)
+- Use hyphen - to separate terms, and underscores within multiword terms.
 - Is your presentation likely to use more than two local Markdown files (in the same directory) -
   that is, other than `README.md` and just one `README-SOMETHING.md`? If so,  number them (except
-  for `README.md`): `README_01_SOMETHING.md, README_02_.SOMETHING-ELSE.md, ...` in the same order as
+  for `README.md`): `README-01-SOMETHING.md, README-02_-SOMETHING-ELSE.md, ...` in the same order as
   you include them in `index.html`. That helps when organizing. You also help people with
   accessibility difficulties.
   
   (Do so, even if their filenames would happen to be
   alphabetically sorted even without `01, 02...`. That helps when people sort files by their last
   update timestamps.)
-- Have a Markdown file name (after `README_XY_`) reflect the ID of its first slide.
+- Have a Markdown file name (after `README-XY-`) reflect the ID of its first slide.
 
 ---
 

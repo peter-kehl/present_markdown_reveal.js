@@ -151,7 +151,7 @@ function initialize_slides() {
     // Thanks to https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3.
     var onDesktop = !(/Android|webOS|iPhone|iPad|iPod|kindle|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     if (onDesktop) {
-        var slidesNavigationSection = document.getElementById("README_NAVIGATE_SLIDES");
+        var slidesNavigationSection = document.getElementById("README-NAVIGATE-SLIDES");
         if (slidesNavigationSection) {
             // Can't conditionally enable the following with CSS by having
             // <section class="only_on_computer" ...> in HTML. Neither by applying CSS in Markdown
@@ -159,7 +159,7 @@ function initialize_slides() {
             // <!-- .element: class="..." -->
             // Hence we inject it in Javascript:
             slidesNavigationSection.insertAdjacentHTML("afterend",
-                '<section data-markdown="../present_on_github_with_reveal.js/README_NAVIGATE_CODETOUR.md"></section>');
+                '<section data-markdown="../present_on_github_with_reveal.js/README-NAVIGATE-VS_CODE-CODETOUR.md"></section>');
         }
     }
 }

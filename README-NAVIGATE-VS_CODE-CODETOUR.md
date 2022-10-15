@@ -8,7 +8,7 @@ This is how to run the same steps (as in the videos) in your (installed) VS Code
 extension. (Unfortunately, this works with local VS Code only. Unfortunately, it doesn't work with
 VS Code web/GitHub web until `CodeTour` publishes its version `0.0.59` or newer on Marketplace - see
 "Related Issues" slide <a class="hide_with_reveal_js"
-href="README_RELATED_ISSUES.md">README_RELATED_ISSUES.md</span> and give them thumbs up.)
+href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</span> and give them thumbs up.)
 <!-- markdownlint-enable MD033 -->
 
 You need version `0.0.59` or newer. Unfortunately, as of September 2022, such a version is not
@@ -33,5 +33,6 @@ Suggest also installing
 [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
 
 <!-- markdownlint-disable MD033 -->
-Please, see the "Related Issues" slide <a class="hide_with_reveal_js" href="README_RELATED_ISSUES.md">README_RELATED_ISSUES.md</span> and give them thumbs up.
+Please, see the "Related Issues" slide <a class="hide_with_reveal_js"
+href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</span> and give them thumbs up.
 <!-- markdownlint-enable MD033 -->

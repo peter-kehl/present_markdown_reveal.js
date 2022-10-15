@@ -37,8 +37,8 @@ The rest of this file assumes that you are viewing its content through `index.ht
 presentation's webroot, either on GitHub pages or served by a local (or other) web server.
 
 If you are reading the rest of the file from its source (from
-<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATE_SLIDES.md> or
-its clone), beware links (if any) with CSS classes
+<https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README-NAVIGATE-SLIDES.md>
+or its clone), beware links (if any) with CSS classes
 
 - `link_relative_to_presentation_github_repo_blob`
 - `link_relative_to_presentation_github_repo_tree`
@@ -47,7 +47,7 @@ its clone), beware links (if any) with CSS classes
 - `vs_code_github_dev`
 - `videos`.
 
-They are NOT relative to this file (`README_NAVIGATE_SLIDES.md`)! Instead, they are relative to directory
+They are NOT relative to this file (`README-NAVIGATE-SLIDES.md`)! Instead, they are relative to directory
 of the actual presentation (one that referred you to this file).
 
 ---
@@ -219,10 +219,10 @@ scrolling on mobile). Please give that issue thums up.
           Bookmarks</a>.</li>
    </li>
    <li class="hide_on_github_pages">Outside of <code>github.io</code> see
-      <code>README_NAVIGATE_SLIDES.md</code>: Original <a
-      href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README_NAVIGATE_SLIDES.md">highlighted
+      <code>README-NAVIGATE-SLIDES.md</code>: Original <a
+      href="https://github.com/peter-kehl/present_on_github_with_reveal.js/blob/main/README-NAVIGATE-SLIDES.md">highlighted
       online</a> (or raw source from a
-      <a href="../present_on_github_with_reveal.js/README_NAVIGATE_SLIDES.md">neighbor clone</a>).
+      <a href="../present_on_github_with_reveal.js/README-NAVIGATE-SLIDES.md">neighbor clone</a>).
    </li>
 </ul>
 <h2>Extras (on computer only)</h1>
