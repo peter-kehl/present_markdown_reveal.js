@@ -1,7 +1,28 @@
-# Present on GitHub with Reveal.js
+# Present Markdown with Reveal.js
 
 Work in progress. See <https://peter-kehl.github.io/no_std_rust_libs> and
 <https://github.com/peter-kehl/no_std_rust_libs> for now.
+
+---
+
+<!-- .slide: id="Benefits" -->
+# Benefits
+
+- Present on GitHub Pages by a simple `git push`. No `npm` or any other preprocessing.
+- Present from any modern webserver (useful for editing locally).
+
+---
+
+<!-- .slide: id="Scope_Simplifications_Limitations" -->
+# Scope, Simplifications, Limitations
+
+- No vertical slides.
+- Using [denehyg/reveal.js-menu](https://github.com/denehyg/reveal.js-menu), but disabled (hid) a
+  few of its entries.
+- Slides are scrollable, which is very tricky with Reveal.js. Scrolling is not ideal on mobile.
+- Not related to [webpro/reveal-md](https://github.com/webpro/reveal-md).
+- Mainstream only: GitHub or generic web server, videos as GitHub raw content and/or Youtube...
+- No support for Reveal.js packages that
 
 ---
 
@@ -48,15 +69,6 @@ Work in progress. See <https://peter-kehl.github.io/no_std_rust_libs> and
   alphabetically sorted even without `01, 02...`. That helps when people sort files by their last
   update timestamps.)
 - Have a Markdown file name (after `README-XY-`) reflect the ID of its first slide.
-
----
-
-<!-- .slide: id="Simplifications_Limitations" -->
-# Simplifications/Limitations
-
-- No vertical slides.
-
----
 
 <!-- .slide: id="Occasional_HTML" -->
 # Occasional HTML

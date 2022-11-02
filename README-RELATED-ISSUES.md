@@ -4,18 +4,53 @@
 Creating and maintaining this presentation and similar presentations, is hard work. This depends on
 several components and tricks to make them work together.
 
-Please help:
+Please help others and yourself
 
-- give thumbs up to the following issues, and
+- connect on LinkedIn and Facebook, and
+- give thumbs up to the below issues, and
 - comment on them if you have any insight, and
-- fix them, or ask someone with related expertise to fix them.
+- fix them, or delegate.
 
-Issues:
+---
 
-- [microsoft/codetour > "Ordered tours don't work"](https://github.com/microsoft/codetour/issues/248)
-- [microsoft/codetour > "Update Code Tour on VS Code Marketplace"](https://github.com/microsoft/codetour/issues/260)
-- [microsoft/codetour > Ability to show the step's bubble above the line (rather than just
+# Closely Related Issues
+
+- [VS Code CodeTour > "Ordered tours don't
+  work"](https://github.com/microsoft/codetour/issues/248)
+- [VS Code CodeTour > "Update Code Tour on VS Code
+  Marketplace"](https://github.com/microsoft/codetour/issues/260)
+- [VS Code CodeTour > Ability to show the step's bubble above the line (rather than just
   below)](https://github.com/microsoft/codetour/issues/259)
-- [microsoft/codetour > Auto-linking of tours to be more flexible](https://github.com/microsoft/codetour/issues/248)
-- [microsoft/codetour > Fix a `Buffer()` depreciation warning](https://github.com/microsoft/codetour/issues/262)
-- [rust-lang/rust-analyzer > Work (at least partially) on VS Code Web](https://github.com/rust-lang/rust-analyzer/issues/11309)
+- [VS Code CodeTour > Auto-linking of tours to be more
+  flexible](https://github.com/microsoft/codetour/issues/248)
+- [VS Code CodeTour > Fix a `Buffer()` depreciation
+  warning](https://github.com/microsoft/codetour/issues/262)
+- [Rust Analyzer > Work (at least partially) on VS Code
+  Web](https://github.com/rust-lang/rust-analyzer/issues/11309)
+- [Reveal.js > Black & White compact themes with verbatim
+  headers](https://github.com/hakimel/reveal.js/pull/3310)
+- [Reveal.js >  Multiple themes at the same
+  time?](https://github.com/hakimel/reveal.js/discussions/3312)
+- [VS Code > LICENSE-ANYTHINGINCAPITALS treated as
+  Markdown](https://github.com/microsoft/vscode/issues/165116)
+
+---
+
+# Broadly Related Issues
+
+- [VS Code Tab Groups > Where/how is it saving
+  locally?](https://github.com/usama8800/VSCode-Tab-Groups/issues/50)
+- [VS Code Tab Groups > Feature Request: Export+Import
+  Functionality](https://github.com/usama8800/VSCode-Tab-Groups/issues/47)
+- [VS Code Tab Groups > Cannot read properties of undefined (reading 'uri') Unable to save tabs that
+  are not files](https://github.com/usama8800/VSCode-Tab-Groups/issues/45)
+- [VS Code Keep Context > Option to save under
+  workspace](https://github.com/marlomgirardi/vscode-keep-context/issues/14)
+- [VS Code Remember Open Files > Updating paths after moving a
+  workspace](https://gitlab.com/duendelunarllc/vscrof/-/issues/3)
+- [VS Code Remember Open Files > Option to save paths as
+  relative](https://gitlab.com/duendelunarllc/vscrof/-/issues/2)
+- [VS Code Markdown Lint > Add a link to Line Length Checker
+](https://github.com/DavidAnson/vscode-markdownlint/issues/258)
+- [VS Code Markdown Lint > Keyboard shortcut (format the document) in README.md should call
+  out Linux-specific chord](https://github.com/DavidAnson/vscode-markdownlint/issues/255)

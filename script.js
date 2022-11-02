@@ -6,7 +6,7 @@
 // More info about initialization & config:
 // - https://revealjs.com/initialization/
 // - https://revealjs.com/config/
-function reveal_js_config() {
+function present_markdown_reveal_get_config() {
     return {
         slideNumber: "c/t",
         hash: true,
@@ -18,6 +18,14 @@ function reveal_js_config() {
         // slide navigation arrows almost invisible at their default position (bottom right) on both
         // Firefox & Chrome for Android (as of September 2022). Hence we also changed controlsLayout
         // below.
+        //
+        // Even worse: This makes the last line of (Markdown/HTML) content invisible/unreachable by
+        // scrolling on mobile/responsive (if a slide is long enough to need scrolling).
+        //
+        // But, without `disableLayout: true`, (embedded) code in `<pre><code>` takes very little of
+        // the screen! And `<code>` on its own (without being enclosed within `<pre>...</pre>`)
+        // doesn't highlight!
+        //
         disableLayout: true,
 
         // On Firefox for small Android, the default (faded) back arrow is almost invisible.
@@ -40,22 +48,46 @@ function reveal_js_config() {
         // the control arrows in their default location (bottom right). But 'edges' works better.
         controlsLayout: 'edges',
 
-        // width and margin help <pre><code> have more space
+        // Disabling the progress bar doesn't affect scrolling/not-hiding of the addressbar on
+        // mobile (in Firefox 105 and Chrome).
+        //
+        // progress: false,
+
+        // width and margin help <pre><code> have more space.
+        //
+        // No effect on shrinked <pre><code> (without `disableLayout: true`)!
         width: "100%",
+        // Setting `margin: 0` or not had no effect on shrinked `<pre><code>` that emerges without
+        // `disableLayout: true`)!
+        //
+        // Setting `margin: 0.20` had no effect on missing last one-two lines of longer slides on
+        // mobile (with `disableLayout: true`)!
         margin: 0,
-        // Don't use: height: "100%". Otherwise <pre><code> is narrow.
+
+        // Don't use: height: "100%". Otherwise <pre><code> is narrow. (Unless you also use
+        //`disableLayout: true`, which unfortunately makes the last one-two lines of long slides
+        //invisible on mobile!)
+        //
+        // But, even without `height: "100%"`, <pre><code> shrinkgs vertically once you navigate to
+        // another slide and then come back!
+        //
+        // height: "100%",
 
         // Learn about plugins: https://revealjs.com/plugins/
+        //
+        // Disabling any and all plugins (RevealMarkdown, RevealAnything. EmbedCode,
+        // RevealHighlight, RevealMenu, RevealSearch) didn't fix scrolling/not-hiding of the
+        // addressbar on mobile.
         plugins: [
             // The following four plugins have to be initialized in this order, so they process
             // content in this order.
             RevealMarkdown,
-            // Before EmbedCode, so that we can adjust <code>'s data-url
+            // RevealAnything applies before EmbedCode, so that we can adjust <code>'s data-url
             RevealAnything,
             EmbedCode,
             RevealHighlight,
             RevealMenu,
-            RevealSearch ],
+            RevealSearch],
         
         // As per https://github.com/denehyg/reveal.js-menu#configuration
         menu: {
@@ -127,7 +159,13 @@ function reveal_js_config() {
     };
 }
 
-function initialize_slides() {
+// @TODO How to share it among our functions, but not make public/available outside this file?
+//
+// Not exact (unsure about smart TV's etc.), but good enough. Thanks to
+// https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3.
+var onDesktop = !(/Android|webOS|iPhone|iPad|iPod|kindle|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+
+function present_markdown_reveal_before_ini() {
     if (document.location.protocol.startsWith("http")) {
         var css = document.createElement('style');
         css.innerHTML = ".hide_with_web_server {display: none !important;}";
@@ -147,20 +185,30 @@ function initialize_slides() {
              ".only_in_chrome {display: none;}";
     }
 
-    // Not exact (unsure about smart TV's etc.), but good enough.
-    // Thanks to https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3.
-    var onDesktop = !(/Android|webOS|iPhone|iPad|iPod|kindle|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     if (onDesktop) {
-        var slidesNavigationSection = document.getElementById("README-NAVIGATE-SLIDES");
-        if (slidesNavigationSection) {
+        var sectionBeforeCodetourNavigation =
+            document.getElementById("SECTION-BEFORE-NAVIGATE-WITH-CODETOUR");
+        if (sectionBeforeCodetourNavigation) {
             // Can't conditionally enable the following with CSS by having
-            // <section class="only_on_computer" ...> in HTML. Neither by applying CSS in Markdown
+            // <section class="only_on_desktop" ...> in HTML. Neither by applying CSS in Markdown
             // (https://revealjs.com/markdown/#element-attributes) by having:
             // <!-- .element: class="..." -->
             // Hence we inject it in Javascript:
-            slidesNavigationSection.insertAdjacentHTML("afterend",
-                '<section data-markdown="../present_on_github_with_reveal.js/README-NAVIGATE-VS_CODE-CODETOUR.md"></section>');
+            sectionBeforeCodetourNavigation.insertAdjacentHTML("afterend",
+                '<section data-markdown="../present_markdown_reveal.js/README-NAVIGATE-VS_CODE-CODETOUR.md"></section>');
         }
+    }
+}
+
+function present_markdown_reveal_after_ini() {
+    if (!onDesktop) {
+        Reveal.addEventListener( 'ready', function( event ) {
+        // See also https://github.com/hakimel/reveal.js/issues/806
+            for (var section of document.getElementsByTagName('section')) {
+                section.insertAdjacentHTML("beforeend",
+                    '<div><br/><br/></div>');
+            }
+        });
     }
 }
 

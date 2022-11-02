@@ -1,6 +1,6 @@
 /*
 If you are reusing
-https://peter-kehl.github.io/present_on_github_with_reveal.js/README-NAVIGATE-SLIDES.md in other
+https://peter-kehl.github.io/present_markdown_reveal.js/README-NAVIGATE-SLIDES.md in other
 presentations, you can hide any of the following CSS classes, if not used:
 - tours,
 - bookmarks,
@@ -26,14 +26,14 @@ with CSS: {display: none !important;}
 }
 /** Thanks to https://stackoverflow.com/a/47703337/1049315 */
 @media (hover: hover) and (pointer: fine) {
-    /* We are on a computer. Hide our mobile-specific content: */
+    /* We are on a desktop/computer. Hide our mobile-specific content: */
     .only_on_mobile {
         display: none !important;
     }
 }
 @media not all and (hover: hover) and (pointer: fine) {
     /* We are on a mobile. Hide our computer-specific content: */
-    .only_on_computer {
+    .only_on_desktop {
         display: none !important;
     }
 }
@@ -48,6 +48,7 @@ section {
 
     /* Don't use fixed "height". Do have "bottom: 0px" */
     height: 100%;
+    /** Increasing `bottom` had no effect on fixing (showing) the last one-two lines on mobile.  */
     bottom: 0px;
 }
 
@@ -60,6 +61,16 @@ section {
     .only_in_firefox_list_item {
         display:list-item;
     }
+}
+
+/** 
+    Used for hidden first header per slide, whose label/name is used for Reveal.js menu (shown with
+    'm' key).
+
+    Keep those header labels/names same as <!-- .slide: id="ID_here_that_shows_in_slide_URL" -->
+*/
+.header_only_for_menu {
+    display: none;
 }
 
 /*
