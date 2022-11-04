@@ -10,8 +10,8 @@
 This is how to run the same steps (as in the videos) locally. You'll need to install [VS
 Code](https://code.visualstudio.com/download) with `CodeTour` extension. (Unfortunately, this works
 with local VS Code only. Not with VS Code web/GitHub web until `CodeTour` publishes its version
-`0.0.59` or newer on Marketplace - see <span class="hide_without_reveal_js">"Related Issues"
-slide</span><a class="hide_with_reveal_js"
+`0.0.59` or newer on Marketplace - see <a class="hide_without_reveal_js"
+href="#/Related_Issues">"Related Issues" slide</a><a class="hide_with_reveal_js"
 href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</a> and give them thumbs up.)
 <!-- markdownlint-enable MD033 -->
 

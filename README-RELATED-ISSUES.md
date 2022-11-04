@@ -1,3 +1,4 @@
+<!-- .slide: id="Related_Issues" -->
 <!-- Keep this header as "Related Issues", or update the same text in other .md files. -->
 # Related Issues
 
@@ -13,6 +14,7 @@ Please help others and yourself
 
 ---
 
+<!-- .slide: id="Closely_Related_Issues" -->
 # Closely Related Issues
 
 - [VS Code CodeTour > Ordered tours don't
@@ -44,6 +46,7 @@ Please help others and yourself
 
 ---
 
+<!-- .slide: id="Broadly_Related_Issues" -->
 # Broadly Related Issues
 
 - [VS Code Tab Groups > Where/how is it saving
