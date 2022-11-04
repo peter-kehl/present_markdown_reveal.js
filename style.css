@@ -23,9 +23,6 @@ with CSS: {display: none !important;}
 .hide_with_reveal_js {
     display: none !important;
 }
-.display_inline_with_reveal_js {
-    display: inline !important;
-}
 
 /** Thanks to https://stackoverflow.com/a/47703337/1049315 */
 @media (hover: hover) and (pointer: fine) {
