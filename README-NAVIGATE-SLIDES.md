@@ -183,8 +183,11 @@ scrolling on mobile). Please give that issue thums up.
 
 ---
 
-<!-- .slide: id="Navigate_Slides" -->
+<!-- .slide: id="Navigate-Slides" -->
 # Navigate Slides
+
+<!--TODO TRY MOVE TO A LIST, APPEND `<! -- .element: class="header_only_for_menu" -- >` **AFTER** EACH
+LIST ITEM -->
 
 <!-- Can't apply https://revealjs.com/markdown/#element-attributes like .element: class="..."
      to list items. That doesn't add the class to the whole list item, but it adds the class only to
@@ -224,9 +227,8 @@ scrolling on mobile). Please give that issue thums up.
 ---
 
 <!-- markdownlint-disable MD033 -->
-<!-- .element: class="header_only_for_menu" -->
-## Navigate Slides Desktop
-<!-- .slide: id="Navigate_Slides_Desktop" -->
+## Navigate Slides Desktop <!-- .element: class="header_only_for_menu" -->
+<!-- .slide: id="Navigate-Slides-Desktop" -->
 <h2>Desktop</h2>
 <ul>
    <li class="only_on_mobile">Easier navigation through slides and search.

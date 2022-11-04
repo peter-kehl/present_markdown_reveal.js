@@ -1,12 +1,18 @@
-<!-- .slide: id="Navigate_with_CodeTour" -->
-# Navigate with CodeTour
+<style type="text/css">
+  .hide_without_reveal_js {
+    display: none;
+  }
+</style>
+<!-- .slide: id="Navigate-with-VS_Code-CodeTour" -->
+# Navigate with VS Code CodeTour
 
 <!-- markdownlint-disable MD033 -->
-This is how to run the same steps (as in the videos) in your (installed) VS Code with `CodeTour`
-extension. (Unfortunately, this works with local VS Code only. Not with VS Code web/GitHub web until
-`CodeTour` publishes its version `0.0.59` or newer on Marketplace - see "Related Issues" slide <a
-class="hide_with_reveal_js" href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</a> and give
-them thumbs up.)
+This is how to run the same steps (as in the videos) locally. You'll need to install [VS
+Code](https://code.visualstudio.com/download) with `CodeTour` extension. (Unfortunately, this works
+with local VS Code only. Not with VS Code web/GitHub web until `CodeTour` publishes its version
+`0.0.59` or newer on Marketplace - see <span class="hide_without_reveal_js">"Related Issues"
+slide</span><a class="hide_with_reveal_js"
+href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</a> and give them thumbs up.)
 <!-- markdownlint-enable MD033 -->
 
 You need version `0.0.59` or newer. Unfortunately, as of September 2022, such a version is not
@@ -33,5 +39,15 @@ Suggest also installing
 
 <!-- markdownlint-disable MD033 -->
 Please, see the "Related Issues" slide <a class="hide_with_reveal_js"
-href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</span> and give them thumbs up.
+href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</a> and give them thumbs up.
 <!-- markdownlint-enable MD033 -->
+
+<!-- 
+  Double space at the end of the first line after this comment preserves it when formated with
+  Rewrap: https://stkb.github.io/Rewrap/specs/features/spaces/#at-the-end-of-a-line. Otherwise
+  Reveal.js wouldn't apply/inject the following class into the generated link
+  (https://revealjs.com/markdown/#element-attributes).
+-->
+Please, see the "Related Issues" slide  
+[README-RELATED-ISSUES.md <!-- .element: class="hide_with_reveal_js" -->](README-RELATED-ISSUES.md)
+and give them thumbs up.

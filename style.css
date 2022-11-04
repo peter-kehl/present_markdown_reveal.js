@@ -24,6 +24,10 @@ with CSS: {display: none !important;}
 .hide_with_reveal_js {
     display: none !important;
 }
+.hide_without_reveal_js {
+    display: inline !important;
+}
+
 /** Thanks to https://stackoverflow.com/a/47703337/1049315 */
 @media (hover: hover) and (pointer: fine) {
     /* We are on a desktop/computer. Hide our mobile-specific content: */
@@ -92,9 +96,11 @@ we use .only_in_chrome instead (and we activate it in script.js).
    Hiding the following from the help menu (shown by question mark ? key), because we disable them
    in script.js. See script.js for more explanation.
 */
-.overlay-help table tr:nth-of-type(7)  /* ↑ , K* /,
+.overlay-help table tr:nth-of-type(7)  /* ↑ , K */,
 .overlay-help table tr:nth-of-type(8)  /* ↓ , J */,
-.overlay-help table tr:nth-of-type(10) /* Shift + ←/↑/→/↓ */
+.overlay-help table tr:nth-of-type(9)  /* Alt + ←/↑/→/↓ */,
+.overlay-help table tr:nth-of-type(10) /* Shift + ←/↑/→/↓ */,
+.overlay-help table tr:nth-of-type(11) /* B, . = Pause */
 {
     display: none !important;
 }
