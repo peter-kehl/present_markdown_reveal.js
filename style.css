@@ -20,11 +20,10 @@ with CSS: {display: none !important;}
     display: block;
     flex-wrap: wrap !important;
 }
-/** TODO remove hide_with_reveal_js if not used*/
 .hide_with_reveal_js {
     display: none !important;
 }
-.hide_without_reveal_js {
+.display_inline_with_reveal_js {
     display: inline !important;
 }
 

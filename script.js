@@ -35,13 +35,16 @@ function present_markdown_reveal_get_config() {
         // want this because we allow zooming and scrolling through any slide.
         //
         // Also disable any shortcuts when Shift is pressed - so that the user can click & then
-        // Shift (repeatedd) right arrow, or Shift (repeated) left arrow to select text to
-        // highlight.
+        // Shift left or right arrow (possibly repeated to select text to highlight.
+        //
+        // Also disable any shortcuts when Alt is pressed - so that the user can use Alt and
+        // left/right arrow to navigate back & forth in the browser's history. (And above we enabled
+        // the slides to be stored in the browser's history, too).
         keyboardCondition: function(event) {
             return event.key!=="ArrowUp" && event.key!=="ArrowDown" &&
             event.key!=="PageUp" && event.key!=="PageUp" &&
             event.key!=="Home" && event.key!=="End" &&
-            !event.shiftKey;
+            !event.shiftKey && !event.altKey;
         },
 
         // With disableLayout: true, both Firefox & Chrome for Android (as of Sep 2022) almost hide

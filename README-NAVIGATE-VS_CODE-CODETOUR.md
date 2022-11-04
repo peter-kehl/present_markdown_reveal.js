@@ -1,8 +1,3 @@
-<style type="text/css">
-  .hide_without_reveal_js {
-    display: none;
-  }
-</style>
 <!-- .slide: id="Navigate-with-VS_Code-CodeTour" -->
 # Navigate with VS Code CodeTour
 
@@ -10,9 +5,10 @@
 This is how to run the same steps (as in the videos) locally. You'll need to install [VS
 Code](https://code.visualstudio.com/download) with `CodeTour` extension. (Unfortunately, this works
 with local VS Code only. Not with VS Code web/GitHub web until `CodeTour` publishes its version
-`0.0.59` or newer on Marketplace - see <a class="hide_without_reveal_js"
-href="#/Related_Issues">"Related Issues" slide</a><a class="hide_with_reveal_js"
-href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</a> and give them thumbs up.)
+`0.0.59` or newer on Marketplace - see <a class="display_inline_with_reveal_js"
+style="display:none;" href="#/Related_Issues">"Related Issues" slide</a><a
+class="hide_with_reveal_js" href="README-RELATED-ISSUES.md">README-RELATED-ISSUES.md</a> and give
+them thumbs up.)
 <!-- markdownlint-enable MD033 -->
 
 You need version `0.0.59` or newer. Unfortunately, as of September 2022, such a version is not
