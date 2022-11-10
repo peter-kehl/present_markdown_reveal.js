@@ -1,21 +1,21 @@
-<!-- .slide: id="Related_Issues" -->
-<!-- Keep this header as "Related Issues", or update the same text in other .md files. -->
-# Related Issues
+<!-- .slide: id="Related_Issues_Slides" -->
+<!-- Keep this header as "Related Issues > Slides", or update the same text in other .md files. -->
+# Related Issues > Slides
 
-Creating and maintaining this presentation and similar presentations, is hard work. This depends on
+Creating and maintaining this presentation, and similar presentations, is hard work. It depends on
 several components and tricks to make them work together.
 
 Please help others and yourself
 
 - connect on [LinkedIn](https://www.linkedin.com/in/peterkehl/) and
   [Facebook](https://www.facebook.com/peter.kehl.reflects/), and
-- give thumbs up to the below issues, and
-- fix them, delegate them, or comment on them if you have any insight.
+- give thumbs up to the following issues, and
+- comment on them if you have any insight.
 
 ---
 
-<!-- .slide: id="Closely_Related_Issues" -->
-# Closely Related Issues
+<!-- .slide: id="Related_Issues_Slides_Close" -->
+# Related Issues > Slides > Close
 
 - [VS Code CodeTour > Ordered tours don't
   work](https://github.com/microsoft/codetour/issues/248)
@@ -28,7 +28,8 @@ Please help others and yourself
 - [VS Code CodeTour > Fix a `Buffer()` depreciation
   warning](https://github.com/microsoft/codetour/issues/262)
 - [Rust Analyzer > Work (at least partially) on VS Code
-  Web](https://github.com/rust-lang/rust-analyzer/issues/11309)
+  Web](https://github.com/rust-lang/rust-analyzer/issues/11309) (since most my presentations are on
+  Rust)
 - [Reveal.js > Black & White compact themes with verbatim
   headers](https://github.com/hakimel/reveal.js/pull/3310)
 - [Reveal.js >  Multiple themes active (not just loaded) at the same
@@ -43,11 +44,13 @@ Please help others and yourself
   name](https://github.com/sfccdevops/explorer-exclude-vscode-extension/issues/45)
 - [VS Code Explorer Exclude > README.md to say that any open files will be still
   listed](https://github.com/sfccdevops/explorer-exclude-vscode-extension/issues/46)
+- [VS Code Rewrap > HTML comments in Markdown with no content left of the
+  comment](https://github.com/stkb/Rewrap/issues/350)
 
 ---
 
-<!-- .slide: id="Broadly_Related_Issues" -->
-# Broadly Related Issues
+<!-- .slide: id="Related_Issues_Slides_Broad" -->
+# Related Issues > Slides > Broad
 
 - [VS Code Tab Groups > Where/how is it saving
   locally?](https://github.com/usama8800/VSCode-Tab-Groups/issues/50)
@@ -61,7 +64,5 @@ Please help others and yourself
   workspace](https://gitlab.com/duendelunarllc/vscrof/-/issues/3)
 - [VS Code Remember Open Files > Option to save paths as
   relative](https://gitlab.com/duendelunarllc/vscrof/-/issues/2)
-- [VS Code Markdown Lint > Add a link to Line Length Checker
-](https://github.com/DavidAnson/vscode-markdownlint/issues/258)
 - [VS Code Markdown Lint > Keyboard shortcut (format the document) in README.md should call
   out Linux-specific chord](https://github.com/DavidAnson/vscode-markdownlint/issues/255)

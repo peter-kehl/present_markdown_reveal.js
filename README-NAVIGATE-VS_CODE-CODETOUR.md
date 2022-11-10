@@ -1,32 +1,26 @@
-<!-- .slide: id="Navigate-with-VS_Code-CodeTour" -->
-# Navigate with VS Code CodeTour
+<!-- .slide: id="Navigate-in-CodeTour" -->
+# Navigate in CodeTour
 
-<!-- markdownlint-disable MD033 -->
 This is how to run the same steps (as in the videos) locally. You'll need to install [VS
-Code](https://code.visualstudio.com/download) with `CodeTour` extension.
-
-(Unfortunately, as of September 2009, this works with local VS Code only. Not with VS Code
-web/GitHub web until `CodeTour` publishes its version `0.0.59` or newer on
-[Marketplace](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour). <!--
-     DOCUMENT_THIS GitHub removes "style" and "class" attributes when rendering Markdown. So we
-     can't hide the following link on GitHub. That's why we add an explanation in the next
-     (non-Reveal.js) text & link. --> See <span class="hide_with_reveal_js">
-[README-RELATED-ISSUES.md](README-RELATED-ISSUES.md) and ignore the following link (which is
-available only when viewing this rendered as slides)</span> the [Related Issues](#/Related_Issues)
-slide, and give them thumbs up.
-<!-- markdownlint-enable MD033 -->
+Code](https://code.visualstudio.com/download) with
+[`CodeTour`](https://github.com/microsoft/codetour/) extension.
 
 You need version `0.0.59` or newer. Unfortunately, as of September 2022, such a version is not
 available on [VS Code
 Marketplace](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour).
 
-You can either
+You have two options:
+
+## Download CodeTour from Open VSX
 
 1. download v. `0.0.59` (or newer) from [open-vsx.org](https://open-vsx.org) >
   [CodeTour](https://open-vsx.org/extension/vsls-contrib/codetour) > "DOWNLOAD"
 2. `code --install-extension vsls-contrib.codetour-0.0.59.vsix` (or newer)
 
-OR
+---
+
+<!-- .slide: id="Navigate-in-CodeTour-local_build" -->
+# Navigate in CodeTour > local build
 
 1. `git clone` [`microsoft/codetour`](https://github.com/microsoft/codetour)
 2. install [`VSCE` - Visual Studio Code Extension
@@ -39,16 +33,14 @@ OR
 6. Turn off your VS Code
 7. `code --install-extension codetour-0.0.59.vsix`
 
-
-Suggest also installing
-[rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
-
-<!-- 
-  Double space at the end of the first line after this comment preserves it when formated with
-  Rewrap: https://stkb.github.io/Rewrap/specs/features/spaces/#at-the-end-of-a-line. Otherwise
-  Reveal.js wouldn't apply/inject the following class into the generated link
-  (https://revealjs.com/markdown/#element-attributes).
--->
-Please, see the "Related Issues" slide  
-[README-RELATED-ISSUES.md <!-- .element: class="hide_with_reveal_js" -->](README-RELATED-ISSUES.md)
-and give them thumbs up.
+<!-- markdownlint-disable MD033 -->
+Unfortunately, we can't play/run the tour(s) in VS Code web/GitHub web until `CodeTour` publishes
+its version `0.0.59` or newer on
+     [Marketplace](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour). <!--
+     DOCUMENT_THIS GitHub removes "style" and "class" attributes when rendering Markdown. So we
+     can't hide the following link on GitHub. That's why we add an explanation in the next
+(non-Reveal.js) text & link. --> See <span class="hide_with_reveal_js">
+[README-RELATED-ISSUES-SLIDES.md](README-RELATED-ISSUES-SLIDES.md) and ignore the following link
+(which is available only when viewing this rendered as slides)</span> the [Related
+Issues > Slides](#/Related_Issues_Slides) slide, and give them thumbs up.
+<!-- markdownlint-enable MD033 -->
