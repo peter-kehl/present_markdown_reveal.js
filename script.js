@@ -144,8 +144,8 @@ function present_markdown_reveal_get_config() {
                 //
                 // TODO: That is not automated any more (it's not inferred from href value).
                 //
-                // TODO Apply automation - once we have change_link_github_pages_to_highlighted() - or
-                // REMOVE THIS COMMENT.
+                // TODO Apply automation - once we have change_link_github_pages_to_highlighted() -
+                // or REMOVE THIS COMMENT.
                 initialize: make_link_relative_to_presentation_github_repo_blob
             },
             {

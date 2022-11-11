@@ -1,7 +1,7 @@
 # Present Markdown with Reveal.js
 
-Work in progress. See <https://peter-kehl.github.io/no_std_rust_libs> and
-<https://github.com/peter-kehl/no_std_rust_libs> for now.
+Work in progress. See <https://peter-kehl.github.io/no_std_libs> and
+<https://github.com/peter-kehl/no_std_libs> for now.
 
 ---
 
@@ -39,8 +39,7 @@ Work in progress. See <https://peter-kehl.github.io/no_std_rust_libs> and
 - Group them semantically: Make related consecutive slides have ID's starting with the same prefix.
   Use that prefix as an ID for the first slide of the group. Like
   - `Navigate_Slides`,
-  - `Navigate_CodeTour`.
-  That way if you split/rename some slides in the group, even if the existing
+  - `Navigate_CodeTour`. That way if you split/rename some slides in the group, even if the existing
   links may become obsolete, users can at least infer the slide group (as listed in the menu).
 - This also keeps links consistent if you make some slides computer-only or mobile-only (or specific
   browser-only).
@@ -65,9 +64,8 @@ Work in progress. See <https://peter-kehl.github.io/no_std_rust_libs> and
   you include them in `index.html`. That helps when organizing. You also help people with
   accessibility difficulties.
   
-  (Do so, even if their filenames would happen to be
-  alphabetically sorted even without `01, 02...`. That helps when people sort files by their last
-  update timestamps.)
+  (Do so, even if their filenames would happen to be alphabetically sorted even without `01, 02...`.
+  That helps when people sort files by their last update timestamps.)
 - Have a Markdown file name (after `README-XY-`) reflect the ID of its first slide.
 
 <!-- .slide: id="Occasional_HTML" -->
@@ -75,4 +73,5 @@ Work in progress. See <https://peter-kehl.github.io/no_std_rust_libs> and
 
 Even if you use Markdown, some combinations require HTML.
 
-Beware that Reveal.js's Markdown ignores `<script>`. So you need to load any Javascript in `index.html`.
+Beware that Reveal.js's Markdown ignores `<script>`. So you need to load any Javascript in
+`index.html`.

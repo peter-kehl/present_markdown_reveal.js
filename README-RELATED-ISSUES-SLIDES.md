@@ -17,6 +17,13 @@ Please help others and yourself
 <!-- .slide: id="Related_Issues_Slides_Close" -->
 # Related Issues > Slides > Close
 
+- [Reveal.js > Black & White compact themes with verbatim
+  headers](https://github.com/hakimel/reveal.js/pull/3310)
+- [Reveal.js >  Multiple themes active (not just loaded) at the same
+  time?](https://github.com/hakimel/reveal.js/discussions/3312)
+- [Rust Analyzer > Work (at least partially) on VS Code
+  Web](https://github.com/rust-lang/rust-analyzer/issues/11309) (since most my presentations are on
+  Rust)
 - [VS Code CodeTour > Ordered tours don't
   work](https://github.com/microsoft/codetour/issues/248)
 - [VS Code CodeTour > Update Code Tour on VS Code
@@ -27,13 +34,6 @@ Please help others and yourself
   flexible](https://github.com/microsoft/codetour/issues/248)
 - [VS Code CodeTour > Fix a `Buffer()` depreciation
   warning](https://github.com/microsoft/codetour/issues/262)
-- [Rust Analyzer > Work (at least partially) on VS Code
-  Web](https://github.com/rust-lang/rust-analyzer/issues/11309) (since most my presentations are on
-  Rust)
-- [Reveal.js > Black & White compact themes with verbatim
-  headers](https://github.com/hakimel/reveal.js/pull/3310)
-- [Reveal.js >  Multiple themes active (not just loaded) at the same
-  time?](https://github.com/hakimel/reveal.js/discussions/3312)
 - [VS Code > LICENSE-ANYTHINGINCAPITALS treated as
   Markdown](https://github.com/microsoft/vscode/issues/165116)
 - [VS Code Chronicler > Support/pass through other ffmpeg

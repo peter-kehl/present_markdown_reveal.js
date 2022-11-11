@@ -1,12 +1,4 @@
 <!-- .slide: data-visibility="hidden" -->
-text <!-- IN a .md (MARKDOWN) FILE, AN HTML COMMENT THAT STARTS ON A LINE THAT HAS NON-HTML COMMENT
-MARKDOWN CONTENT LEFT OF IT, THE VERY LONG HTML COMMENT GETS RE-WRAPPED WELL, EVEN ON MULTIPLE
-LINES. (THIS HAS BEEN RE-WRAPPED TO 100 CHARS.) THANK YOU. -->
-
-       <!-- A VERY LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG HTML COMMENT, WITH NO CONENT LEFT OF IT ONLY WHITE SPACE, DOES NOT GET RE-WRAPPED.  -->
-
-<!-- A VERY LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG LONG HTML COMMENT, WITH NO CONENT LEFT OF IT WHATSOVER, DOES NOT GET REWRAPPED -->
-
 <!--
   TODO Videos may be out of date from slides and source code. Slides may be out of date from
   source code.
@@ -16,7 +8,6 @@ LINES. (THIS HAS BEEN RE-WRAPPED TO 100 CHARS.) THANK YOU. -->
   on the content of the slide. However, the slide itself would show up regardless. So if the class
   did apply, the slide would show up as blank!
 -->
-
 
 # SEE SLIDES
 
