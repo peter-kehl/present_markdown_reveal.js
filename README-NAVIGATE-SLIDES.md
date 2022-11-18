@@ -218,11 +218,11 @@ LIST ITEM -->
    <li class="videos">See video(s) in <a href="videos"
       class="link_relative_to_presentation_github_repo_blob"><code>videos/</code></a> directory.
    </li>
-   <li class="hide_on_github_pages">Outside of <code>github.io</code> see
+   <li class="hide_on_github_pages">For manual navigation and outside of <code>github.io</code> see
       <code>README-NAVIGATE-SLIDES.md</code>: Original <a
       href="https://github.com/peter-kehl/present_markdown_reveal.js/blob/main/README-NAVIGATE-SLIDES.md">highlighted
       online</a> (or raw source from a
-      <a href="../present_markdown_reveal.js/README-NAVIGATE-SLIDES.md">neighbor clone</a>).
+      <a href="../present_markdown_reveal.js/README-NAVIGATE-SLIDES.md">neighbor clone</a>, if you cloned it next to this clone).
    </li>
 </ul>
 <!-- markdownlint-enable MD033 -->
