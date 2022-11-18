@@ -1,6 +1,6 @@
 <!-- .slide: id="Related_Issues_Slides" -->
 <!-- Keep this header as "Related Issues > Slides", or update the same text in other .md files. -->
-# Related Issues > Slides
+# Related Issues &gt; Slides
 
 Creating and maintaining this presentation, and similar presentations, is hard work. It depends on
 several components and tricks to make them work together.
@@ -24,8 +24,7 @@ Please help others and yourself
 - [Rust Analyzer > Work (at least partially) on VS Code
   Web](https://github.com/rust-lang/rust-analyzer/issues/11309) (since most my presentations are on
   Rust)
-- [VS Code CodeTour > Ordered tours don't
-  work](https://github.com/microsoft/codetour/issues/248)
+- [VS Code CodeTour > Ordered tours don't work](https://github.com/microsoft/codetour/issues/248)
 - [VS Code CodeTour > Update Code Tour on VS Code
   Marketplace](https://github.com/microsoft/codetour/issues/260)
 - [VS Code CodeTour > Ability to show the step's bubble above the line (rather than just
@@ -46,7 +45,7 @@ Please help others and yourself
   listed](https://github.com/sfccdevops/explorer-exclude-vscode-extension/issues/46)
 - [VS Code Rewrap > HTML comments in Markdown with no content left of the
   comment](https://github.com/stkb/Rewrap/issues/350)
-
+  
 ---
 
 <!-- .slide: id="Related_Issues_Slides_Broad" -->
@@ -64,5 +63,7 @@ Please help others and yourself
   workspace](https://gitlab.com/duendelunarllc/vscrof/-/issues/3)
 - [VS Code Remember Open Files > Option to save paths as
   relative](https://gitlab.com/duendelunarllc/vscrof/-/issues/2)
-- [VS Code Markdown Lint > Keyboard shortcut (format the document) in README.md should call
-  out Linux-specific chord](https://github.com/DavidAnson/vscode-markdownlint/issues/255)
+- [VS Code Markdown Lint > Keyboard shortcut (format the document) in README.md should call out
+  Linux-specific chord](https://github.com/DavidAnson/vscode-markdownlint/issues/255)
+- [VS Code Markdown Lint &gt; MD003/heading-style/header-style
+  wording](https://github.com/DavidAnson/vscode-markdownlint/issues/261)

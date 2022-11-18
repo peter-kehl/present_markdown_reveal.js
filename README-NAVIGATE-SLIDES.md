@@ -17,7 +17,8 @@ presentations use this file.) Instead, see
 
 - the GitHub project (or its clone/copy) or webpage you that referred you to this file; or
 - `index.html` at the root of the actual presentation that referred to this file. However, do NOT
-  open it from a filesystem, but from a web server instead. See `python3` below for an example; or
+  open it from a filesystem, but from a web server instead. See `python3 -m http.server` below for
+  an example; or
 - the list of the original author's
   [presentations](https://github.com/peter-kehl/peter-kehl/blob/main/README.md).
 
