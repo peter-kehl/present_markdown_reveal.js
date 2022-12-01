@@ -43,8 +43,12 @@ Please help others and yourself
   name](https://github.com/sfccdevops/explorer-exclude-vscode-extension/issues/45)
 - [VS Code Explorer Exclude > README.md to say that any open files will be still
   listed](https://github.com/sfccdevops/explorer-exclude-vscode-extension/issues/46)
+- [VS Code Rewrap > CLI for CI integration](https://github.com/stkb/Rewrap/issues/328)
 - [VS Code Rewrap > HTML comments in Markdown with no content left of the
   comment](https://github.com/stkb/Rewrap/issues/350)
+- [VS Code Rewrap > Running tests & ./do](https://github.com/stkb/Rewrap/issues/352)
+- [VS Code Rewrap > Installing from source (to VS Code)](https://github.com/stkb/Rewrap/issues/354)
+- [VS Code Rewrap > CONTRIBUTING.md](https://github.com/stkb/Rewrap/issues/355)
   
 ---
 
