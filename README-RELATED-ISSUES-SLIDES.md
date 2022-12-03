@@ -1,6 +1,6 @@
 <!-- .slide: id="Related_Issues_Slides" -->
 <!-- Keep this header as "Related Issues > Slides", or update the same text in other .md files. -->
-# Related Issues &gt; Slides
+# Related Issues > Slides
 
 Creating and maintaining this presentation, and similar presentations, is hard work. It depends on
 several components and tricks to make them work together.
@@ -69,5 +69,5 @@ Please help others and yourself
   relative](https://gitlab.com/duendelunarllc/vscrof/-/issues/2)
 - [VS Code Markdown Lint > Keyboard shortcut (format the document) in README.md should call out
   Linux-specific chord](https://github.com/DavidAnson/vscode-markdownlint/issues/255)
-- [VS Code Markdown Lint &gt; MD003/heading-style/header-style
+- [VS Code Markdown Lint > MD003/heading-style/header-style
   wording](https://github.com/DavidAnson/vscode-markdownlint/issues/261)
